@@ -1,0 +1,11 @@
+Schema design
+-	We have decided to use two schemas model for our project named evote_detail and citizens
+-	According to our design, we will be holding information about a city. Where the city will have the following main components:
+	Population: number of people living in the city
+	Voters: number of people are eligible to vote
+	Citizens: an array a foreign key that connects the citizen schema with evote_schema
+	Counties:holds an array of county objects which have basic information about county like:
+o	Name
+o	Location
+o	Nominees in the county: nominee will hold information about the nominee like general information, vote counts and political party info
+o	Polling sites: has an address with longitude and latitude to specify the location 
