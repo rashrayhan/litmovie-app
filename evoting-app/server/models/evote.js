@@ -7,9 +7,7 @@ const electionSchema = mongoose.Schema(
         Name: String,
         state: String,
         population: Number,
-        citizens: [
-            { type: Number, ref: 'Citizens' }
-        ],
+
         counties_detail: [
             {
                 "_id": Number,

@@ -4,6 +4,7 @@ const citizensSchema = mongoose.Schema({
     'last_name': String,
     'drivering_licencse_number': String,
     DOB: Date,
+    city: { type: mongoose.Schema.Types.ObjectId, ref: 'Evote' },
     Address: {
         type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
 
