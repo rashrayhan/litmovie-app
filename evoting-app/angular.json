@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "evoting-app"
+  "defaultProject": "evoting-app",
+  "cli": {
+    "analytics": false
+  }
 }
