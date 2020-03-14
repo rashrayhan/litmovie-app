@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const path = require('path');
 const votersRoutes = require('./server/routes/voters');
 const generalRoutes = require('./server/routes/generalRoute');
@@ -6,7 +7,8 @@ const port = process.env.port || 4600;
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'dist/evoting-app')))
+app.use(express.static(path.join(__dirname, 'dist/evoting-app')));
+app.use(helmet());
 
 app.use('/evote', votersRoutes);
 
