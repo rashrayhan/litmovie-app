@@ -9,27 +9,6 @@ const electionSchema = mongoose.Schema(
         population: Number,
         citizens: [
 
-            {
-                'first_name': String,
-                'last_name': String,
-                'drivering_licencse_number': String,
-                DOB: Date,
-                Address: {
-                    zipcode: String,
-                    mail_box: String,
-                    street: String,
-                    house_no: String
-
-
-                },
-                'registered_to_vote': boolean,
-                'voted': boolean,
-                email: String,
-                'phone_number': Number,
-                SSN: Number
-
-            },
-
         ],
         counties_detail: [
             {
@@ -99,5 +78,6 @@ const electionSchema = mongoose.Schema(
 
 
 );
+
 modules.exports = mongoose.model('evote', electionSchema);
 
