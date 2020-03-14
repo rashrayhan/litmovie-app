@@ -22,8 +22,7 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
     console.log(`app is running on port: ${port}`)
   })
 
-}
-).catch((err) => {
+}).catch((err) => {
   console.log(err)
 })
 

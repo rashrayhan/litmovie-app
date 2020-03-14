@@ -12,6 +12,7 @@ const electionSchema = mongoose.Schema(
             {
                 'first_name': String,
                 'last_name': String,
+                email: String,
                 'drivering_licencse_number': String,
                 DOB: Date,
                 Address: {
@@ -19,8 +20,6 @@ const electionSchema = mongoose.Schema(
                     mail_box: String,
                     street: String,
                     house_no: String
-
-
                 },
                 'registered_to_vote': boolean,
                 'voted': boolean,
