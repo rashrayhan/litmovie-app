@@ -38,4 +38,12 @@ electionSchema.pre('update', function (next) {
     next();
 
 })
+electionSchema.query.byDriver_License = function (dnumber) {
+    return this.find({ drivering_licencse_number: dnumber })
+}
+
+electionSchema.query.findNominees = function (dnumber) {
+    return this.find({ drivering_licencse_number: dnumber }).populate('city', 'counties_detail')
+}
+
 modules.exports = mongoose.model('Citizens', citizensSchema);
