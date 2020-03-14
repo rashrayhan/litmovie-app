@@ -7,29 +7,7 @@ const electionSchema = mongoose.Schema(
         Name: String,
         state: String,
         population: Number,
-        citizens: [
 
-            {
-                'first_name': String,
-                'last_name': String,
-                email: String,
-                'drivering_licencse_number': String,
-                DOB: Date,
-                Address: {
-                    zipcode: String,
-                    mail_box: String,
-                    street: String,
-                    house_no: String
-                },
-                'registered_to_vote': boolean,
-                'voted': boolean,
-                email: String,
-                'phone_number': Number,
-                SSN: Number
-
-            },
-
-        ],
         counties_detail: [
             {
                 "_id": Number,
@@ -40,21 +18,17 @@ const electionSchema = mongoose.Schema(
                         bio: {
                             '_id': Number,
                             name: String, "_id": Number, SSN: Number, picture: String,
-                            Address: {
-                                zipcode: String,
-                                mail_box: String,
-                                street: String,
-                                house_no: String
+                            address: {
+                                type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
+
 
                             },
                             party: {
                                 name: String,
                                 'office_phone': Number,
                                 office_address: {
-                                    zipcode: String,
-                                    mail_box: String,
-                                    street: String,
-                                    house_no: String
+                                    type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
+
 
                                 },
                                 description: String,
@@ -80,13 +54,10 @@ const electionSchema = mongoose.Schema(
                         fax: Number,
 
                         address: {
-                            zipcode: String,
-                            mail_box: String,
-                            street: String,
-                            house_no: String,
-                            location: [string, string],
-                            email: string
-                        }
+                            type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
+
+
+                        },
                     },
                 ]
 
@@ -99,5 +70,24 @@ const electionSchema = mongoose.Schema(
 
 
 );
-modules.exports = mongoose.model('evote', electionSchema);
+electionSchema.pre('save', function (next) {
+
+    let currentDate = new Date;
+    this.updated_at = currentDate;
+    if (!this.created_at) this.created_at = currentDate;
+    console.log('date set')
+    next();
+
+})
+electionSchema.pre('update', function (next) {
+
+    let currentDate = new Date;
+    this.updated_at = currentDate;
+
+    console.log('date set')
+    next();
+
+})
+
+modules.exports = mongoose.model('Evote', electionSchema);
 
