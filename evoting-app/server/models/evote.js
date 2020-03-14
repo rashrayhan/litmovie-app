@@ -8,7 +8,7 @@ const electionSchema = mongoose.Schema(
         state: String,
         population: Number,
 
-        counties_detail: [
+        'counties_detail': [
             {
                 "_id": Number,
                 "name": String,
@@ -88,6 +88,8 @@ electionSchema.pre('update', function (next) {
     next();
 
 })
+
+
 
 modules.exports = mongoose.model('Evote', electionSchema);
 
