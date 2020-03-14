@@ -5,10 +5,7 @@ const citizensSchema = mongoose.Schema({
     'drivering_licencse_number': String,
     DOB: Date,
     Address: {
-        zipcode: String,
-        mail_box: String,
-        street: String,
-        house_no: String
+        type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
 
 
     },
@@ -21,4 +18,23 @@ const citizensSchema = mongoose.Schema({
     'updated_at': Date,
 
 })
-modules.exports = mongoose.model('citizens', citizensSchema);
+
+electionSchema.pre('save', function (next) {
+
+    let currentDate = new Date;
+    this.updated_at = currentDate;
+    if (!this.created_at) this.created_at = currentDate;
+    console.log('date set')
+    next();
+
+})
+electionSchema.pre('update', function (next) {
+
+    let currentDate = new Date;
+    this.updated_at = currentDate;
+
+    console.log('date set')
+    next();
+
+})
+modules.exports = mongoose.model('Citizens', citizensSchema);

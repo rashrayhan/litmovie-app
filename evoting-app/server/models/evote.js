@@ -8,7 +8,7 @@ const electionSchema = mongoose.Schema(
         state: String,
         population: Number,
         citizens: [
-
+            { type: Number, ref: 'Citizens' }
         ],
         counties_detail: [
             {
@@ -20,21 +20,17 @@ const electionSchema = mongoose.Schema(
                         bio: {
                             '_id': Number,
                             name: String, "_id": Number, SSN: Number, picture: String,
-                            Address: {
-                                zipcode: String,
-                                mail_box: String,
-                                street: String,
-                                house_no: String
+                            address: {
+                                type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
+
 
                             },
                             party: {
                                 name: String,
                                 'office_phone': Number,
                                 office_address: {
-                                    zipcode: String,
-                                    mail_box: String,
-                                    street: String,
-                                    house_no: String
+                                    type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
+
 
                                 },
                                 description: String,
@@ -59,13 +55,10 @@ const electionSchema = mongoose.Schema(
                         fax: Number,
 
                         address: {
-                            zipcode: String,
-                            mail_box: String,
-                            street: String,
-                            house_no: String,
-                            location: [string, string],
-                            email: string
-                        }
+                            type: mongoose.SchemaTypes.ObjectId, ref: 'Address'
+
+
+                        },
                     },
                 ]
 
@@ -78,6 +71,24 @@ const electionSchema = mongoose.Schema(
 
 
 );
+electionSchema.pre('save', function (next) {
 
-modules.exports = mongoose.model('evote', electionSchema);
+    let currentDate = new Date;
+    this.updated_at = currentDate;
+    if (!this.created_at) this.created_at = currentDate;
+    console.log('date set')
+    next();
+
+})
+electionSchema.pre('update', function (next) {
+
+    let currentDate = new Date;
+    this.updated_at = currentDate;
+
+    console.log('date set')
+    next();
+
+})
+
+modules.exports = mongoose.model('Evote', electionSchema);
 
