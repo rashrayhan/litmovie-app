@@ -6,6 +6,7 @@ const electionSchema = mongoose.Schema(
         '_id': Number,
         'state_name': String,
         'cities': [{
+            'city_name': String,
             population: Number,
             'registered_voters': [
 
@@ -72,5 +73,5 @@ const electionSchema = mongoose.Schema(
     }
 
 );
-modules.exports = mongoose.model('State', electionSchema);
+module.exports = mongoose.model('Evote', electionSchema);
 
