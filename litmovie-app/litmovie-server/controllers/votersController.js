@@ -1,10 +1,6 @@
 //will contain voters controller
-<<<<<<< HEAD
-const Evote = require('../models/state_model')
-=======
 const State_model = require('../models/state_model');
 const mongoose = require('mongoose');
->>>>>>> 21bea16bf6c6efaf45b55d19c0dc52241caf1d6f
 
 //register voter control
 module.exports.registerVoter = async function (req, res) {
