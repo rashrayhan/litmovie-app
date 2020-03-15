@@ -1,7 +1,7 @@
 const router = require('express').Router();
+const adminController = require('../controllers/adminController')
 
-router.get('/', (req, res) => {
-    res.send('this is working');
-})
+
+router.get('/', adminController.getCities)
 
 module.exports = router;

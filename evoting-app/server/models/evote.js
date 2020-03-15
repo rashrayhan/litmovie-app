@@ -96,5 +96,5 @@ const electionSchema = mongoose.Schema(
 
 
 );
-modules.exports = mongoose.model('evote', electionSchema);
+modules.exports = mongoose.model('Evote', electionSchema);
 
