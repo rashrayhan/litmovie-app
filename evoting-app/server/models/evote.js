@@ -35,62 +35,64 @@ const electionSchema = mongoose.Schema(
             },
 
         ],
-        counties_detail: [
-            {
-                "_id": Number,
-                "name": String,
-                zipcodes: [Number],
-                parties:
-                    [{
-                        name: String,
-                        'office_phone': Number,
-                        office_address: {
-                            zipcode: String,
-                            mail_box: String,
-                            street: String,
-                            house_no: String
+        parties:
+            [{
+                name: String,
+                'office_phone': Number,
+                office_address: {
+                    zipcode: String,
+                    mail_box: String,
+                    street: String,
+                    house_no: String
 
-                        },
-                        description: String,
-                        logo: String,
-                        'party_rep': String,
-                        nominee:
-                        {
-                            ssn: String,
+                },
+                description: String,
+                logo: String,
+                'party_rep': String,
+                nominee:
+                {
+                    ssn: String,
 
-                            'vote_count': Number,
-                            'picUrl': String
+                    'vote_count': Number,
+                    'picUrl': String
 
 
-                        }
-                    }],
-
-
-
-                'voting_polls': [
-
-
-
-                    {
-                        'election_official': String,
-                        'general_phone': Number,
-                        fax: Number,
-
-                        address: {
-                            zipcode: String,
-                            mail_box: String,
-                            street: String,
-                            house_no: String,
-                            location: [string, string],
-                            email: string
-                        }
-                    },
-                ]
-
-            }
-        ],
+                }
+            }],
         'created_at': Date,
         'updated_at': Date,
+        // counties_detail: [
+        //     {
+        //         "_id": Number,
+        //         "name": String,
+        //         zipcodes: [Number],
+
+
+
+
+        //         'voting_polls': [
+
+
+
+        //             {
+        //                 'election_official': String,
+        //                 'general_phone': Number,
+        //                 fax: Number,
+
+        //                 address: {
+        //                     zipcode: String,
+        //                     mail_box: String,
+        //                     street: String,
+        //                     house_no: String,
+        //                     location: [string, string],
+        //                     email: string
+        //                 }
+        //             },
+        //         ]
+
+        //     }
+        // ],
+
 
     }
 
