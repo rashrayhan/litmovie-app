@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-
+const mongoose = require('mongoose')
 const electionSchema = mongoose.Schema(
+
+
     {
         '_id': Number,
         'state_name': String,
@@ -12,22 +13,30 @@ const electionSchema = mongoose.Schema(
                     "_id": Number,
                     'first_name': String,
                     'last_name': String,
-                    'driving_licencse_number': String,
+                    'drivering_licencse_number': String,
                     DOB: Date,
                     Address: {
                         zipcode: String,
                         mail_box: String,
                         street: String,
                         house_no: String
+
+
                     },
+
                     'voted': boolean,
                     email: String,
                     'phone_number': Number,
                     SSN: Number,
                     auth: { username: String, password: String, role: String },
                     'voting_token': String
+
+
+
                 },
+
             ],
+
             counties_detail: [
                 {
                     "_id": Number,
@@ -51,10 +60,17 @@ const electionSchema = mongoose.Schema(
                             vote_count: [{ party_id: Number, party_name: String, vote_count: Number }]
                         },
                     ]
+
                 }
             ],
+
+
         }],
+
+
+
     }
+
 );
-module.exports = mongoose.model('State_model', electionSchema);
+module.exports = mongoose.model('Evote', electionSchema);
 
