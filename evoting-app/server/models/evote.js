@@ -26,7 +26,11 @@ const electionSchema = mongoose.Schema(
                 'voted': boolean,
                 email: String,
                 'phone_number': Number,
-                SSN: Number
+                SSN: Number,
+                auth: { username: String, password: String, role: String },
+                'voting_token': String
+
+
 
             },
 
@@ -36,40 +40,33 @@ const electionSchema = mongoose.Schema(
                 "_id": Number,
                 "name": String,
                 zipcodes: [Number],
-                nominees: [
-                    {
-                        bio: {
-                            '_id': Number,
-                            name: String, "_id": Number, SSN: Number, picture: String,
-                            Address: {
-                                zipcode: String,
-                                mail_box: String,
-                                street: String,
-                                house_no: String
+                parties:
+                    [{
+                        name: String,
+                        'office_phone': Number,
+                        office_address: {
+                            zipcode: String,
+                            mail_box: String,
+                            street: String,
+                            house_no: String
 
-                            },
-                            party: {
-                                name: String,
-                                'office_phone': Number,
-                                office_address: {
-                                    zipcode: String,
-                                    mail_box: String,
-                                    street: String,
-                                    house_no: String
+                        },
+                        description: String,
+                        logo: String,
+                        'party_rep': String,
+                        nominee:
+                        {
+                            ssn: String,
 
-                                },
-                                description: String,
-                                logo: String,
-                                'president_name': String
-
-                            },
                             'vote_count': Number,
+                            'picUrl': String
 
 
                         }
-                    }
+                    }],
 
-                ],
+
+
                 'voting_polls': [
 
 
