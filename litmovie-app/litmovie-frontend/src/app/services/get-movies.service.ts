@@ -19,17 +19,11 @@ export class GetMoviesService {
   fetchMovies(path) {
     this.http.get(path)
       .subscribe(data => {
-        this.currentPage = data['page']
-
+        this.currentPage = data['page'];
         let tempo: [] = data['results'];
-        // console.log('hello', tempo)
-        // this.localStorage = [...this.localStorage, tempo]
-        this.localStorage = this.localStorage.concat(tempo)
-        this.merged = this.localStorage
+        this.localStorage = this.localStorage.concat(tempo);
+        this.merged = this.localStorage;
         let temp1 = [];
-
-        // this.merged = [].concat.apply([], this.localStorage);
-        // console.log('merged', this.merged)
 
       });
   }
@@ -49,10 +43,16 @@ export class GetMoviesService {
   }
 
   getMovieDetail(movieId: String) {
-    const path = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
-    return this.http.get(path)
-
+    const path = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+    return this.http.get(path);
   }
+
+
+  getCastDetail(movieId: String) {
+    const path = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+    return this.http.get(path);
+  }
+
 
 
 }

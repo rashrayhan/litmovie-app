@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { GetMoviesService } from '../../services/get-movies.service';
-import { IMAGE_BASE_URL, } from '../../../config'
-import { store } from '../../../store'
-import { loadData } from '../../../actions/action'
+import { IMAGE_BASE_URL, } from '../../../config';
+import { store } from '../../../store';
+import { loadData } from '../../../actions/action';
 import { from } from 'rxjs';
 
 @Component({
@@ -27,11 +27,7 @@ export class LandingComponent implements AfterContentChecked {
   ngAfterContentChecked(): void {
     this.data = this.getMoviesServies.getCachedData()
 
-    // .subscribe((data) => {
-
-    //   console.dir('com', data)
-    //   this.data = data;
-    let img = this.data[3].backdrop_path
+    let img = this.data[3].backdrop_path;
     this.IMG_URL = `${IMAGE_BASE_URL}w1280${img}`;
     this.movieID = this.data[3].id;
     this.title = this.data[3].title;

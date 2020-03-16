@@ -32,7 +32,7 @@
   <tbody>
     <tr mdbTableCol>
       <th scope="row">Title</th>
-      <td colspan="3">{{movie.title}}</td>
+      <td colspan="3">{{title}}</td>
       <th>Release date</th>
       <td>{{releaseDate}} </td>
 
@@ -61,21 +61,25 @@
 
 <div class="text-center mb-4 mt-4">
 
-  <a mat-stroked-button color="primary" routerLink=".">Show Movie Actors</a>
+  <a mat-stroked-button color="primary" (click) ="toggleActors()">Toggle Movie Actors</a>
 </div>
 
 
 <!-- movie actors -->
-<!-- <div class="mdb-container px-5">
+<div class="mdb-container px-5" *ngIf="!actorsShow">
 
-  <mdb-card *ngFor="let d of data" class="my-2">
-    <a [routerLink] = "['/moviedetails']"[queryParams]="{movieID: d['id']}"  mdbBtn mdbWavesEffect title="{{d['original_title']}}">
+  <mdb-card *ngFor="let m of casts" class="my-1 px-1">
 
-      <mdb-card-img src="{{IMG_URL_POSTER}}{{d['poster_path']}}" alt="{{d['original_title']}}">
+    <p *ngIf="m['profile_path'] != null">
+      <mdb-card-img src="{{IMG_URL_CREW}}{{m['profile_path']}}" title="{{m.name}}" alt="{{m.name}}">
       </mdb-card-img>
-    </a>
+    </p>
+    <p *ngIf="m['profile_path'] == null">
+      <mdb-card-img src="../../../assets/pbSz7d1aURy88HGzFWng5EoFU81.jpg" alt="not available">
+      </mdb-card-img>
+    </p>
   </mdb-card>
-</div> -->
+</div>
 
 <div class="text-center mb-4 mt-4">
 
