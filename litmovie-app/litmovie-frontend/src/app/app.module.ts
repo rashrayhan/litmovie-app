@@ -17,6 +17,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
+import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.compone
     RegisterComponent,
     NavbarComponent,
     FooterComponent,
-    MoviedetailsComponent
+    MoviedetailsComponent,
+    LoggedinnavbarComponent
   ],
   imports: [
     BrowserModule,
