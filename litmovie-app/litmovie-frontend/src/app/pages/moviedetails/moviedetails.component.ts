@@ -8,14 +8,14 @@ import { IMAGE_BASE_URL, } from '../../../config';
   templateUrl: './moviedetails.component.html',
   styleUrls: ['./moviedetails.component.scss']
 })
-export class MoviedetailsComponent implements OnInit{
+export class MoviedetailsComponent implements OnInit {
   actorsShow = true;
   data: any;
   Unsubscribe;
   IMG_URL: any;
   IMG_URL_CREW = `${IMAGE_BASE_URL}w500`;
   movieID: number;
-  movieId;  movie; casts: any;
+  movieId; movie; casts: any;
   title; overview; releaseDate; runtime; revenue; status; popularity;
   voteCount; voteAverage;
 
@@ -24,7 +24,7 @@ export class MoviedetailsComponent implements OnInit{
     this.actorsShow = !this.actorsShow;
   }
 
-  constructor(private getMoviesServies: GetMoviesService,  private route: ActivatedRoute) {
+  constructor(private getMoviesServies: GetMoviesService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.movieId = params['movieID'];
       // console.log('movie id', this.movieId);
@@ -57,5 +57,11 @@ export class MoviedetailsComponent implements OnInit{
     });
   }
 
+  handleFavorite() {
 
+
+  }
 }
+
+
+
