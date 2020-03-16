@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+body {
+    background: #456;
+    font-family: 'Open Sans', sans-serif;
+}
 
 .login {
   width: 400px;
@@ -77,4 +81,10 @@
 
 .login input[type="submit"]:focus {
   border-color: #05a;
+}
+
+.has-error input[type="email"],
+.has-error input[type="password"] {
+    border-color: rgb(216, 12, 12);
+    color: rgb(230, 14, 14);
 }
