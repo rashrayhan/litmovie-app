@@ -1,9 +1,12 @@
 <mat-grid-list cols="4" rowHeight="100px">
-  <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
+
+  <mat-grid-tile [colspan]="4" [rowspan]="4">
+    main movie
+    <!-- {{data['original_title']}} -->
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngFor="let d of data" [colspan]="1" [rowspan]="2">
+
+    {{d['original_title']}}
   </mat-grid-tile>
 </mat-grid-list>

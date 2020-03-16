@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { GetMoviesService } from '../../services/get-movies.service'
 
 @Component({
   selector: 'app-landing',
@@ -7,23 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 
 
-export class LandingComponent {
+export class LandingComponent implements AfterContentChecked {
+  data: [];
+  constructor(private getMoviesServies: GetMoviesService) { }
 
-  constructor() { }
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 4, rows: 4, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 3, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 3, color: 'lightpink'},
-    {text: 'Four', cols: 1, rows: 3, color: '#DDBDF1'},
-    {text: 'Five', cols: 1, rows: 3, color: 'cyan'},
-  ];
+  ngAfterContentChecked(): void {
+    this.getMoviesServies.getCachedData().subscribe((data) => {
+      this.data = data
+      console.dir(this.data);
+    });
 
-}
+  }
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
+
+
 }
