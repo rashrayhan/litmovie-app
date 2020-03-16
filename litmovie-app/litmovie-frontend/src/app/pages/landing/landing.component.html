@@ -1,12 +1,22 @@
 <mat-grid-list cols="4" rowHeight="100px">
 
-  <mat-grid-tile [colspan]="4" [rowspan]="4">
-    main movie
+  <mat-grid-tile [colspan]="4" [rowspan]="5">
+    <img [src]="IMG_URL">
     <!-- {{data['original_title']}} -->
   </mat-grid-tile>
 
   <mat-grid-tile *ngFor="let d of data" [colspan]="1" [rowspan]="2">
+    <!-- <img [src]="IMG_URL_POSTER"> -->
 
-    {{d['original_title']}}
+
   </mat-grid-tile>
+
 </mat-grid-list>
+
+<div class="load-more">
+
+  <button mat-fab aria-label="Example icon-button with a heart icon">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
