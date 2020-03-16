@@ -31,11 +31,11 @@ export class LandingComponent implements AfterContentChecked {
 
     //   console.dir('com', data)
     //   this.data = data;
-    let img = this.data[0].backdrop_path
+    let img = this.data[3].backdrop_path
     this.IMG_URL = `${IMAGE_BASE_URL}w1280${img}`;
-    this.movieID = this.data[0].id;
-    this.title = this.data[0].title;
-    this.overview = this.data[0].overview;
+    this.movieID = this.data[3].id;
+    this.title = this.data[3].title;
+    this.overview = this.data[3].overview;
     //   // console.dir(this.data);
     //   console.log('here');
     // });
