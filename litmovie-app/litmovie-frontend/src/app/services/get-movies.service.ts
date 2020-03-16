@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { API_URL, API_KEY } from "../../config"
-import { from, Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { IMovie, IAppState } from '../../state/IAppState'
 @Injectable({
@@ -14,26 +14,19 @@ export class GetMoviesService {
   localStorage = [];
   currentPage: number
   merged = [];
+  movieDetail;
   constructor(private http: HttpClient) { }
 
 
   fetchMovies(path) {
     this.http.get(path)
       .subscribe(data => {
-        //  console.dir(data)
         this.currentPage = data['page']
-        //console.dir(data['results'])
-
         let tempo: [] = data['results'];
         console.log('hello', tempo)
         this.localStorage = [...this.localStorage, tempo]
         let temp1 = [];
-        // for (let i = 0; i < this.localStorage.length; i++) {
-        //   //    let res;
-        //   //   res = [...temp1, ...this.localStorage[i]]
-        //   temp1 = temp1.concat(this.localStorage[i])
-        // }
-        //  this.localStorage = temp1
+
         this.merged = [].concat.apply([], this.localStorage);
         console.log('l', this.localStorage, 'merged', this.merged)
 
@@ -45,12 +38,27 @@ export class GetMoviesService {
   }
 
   handleClick() {
+
     this.fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${this.currentPage + 1}`)
 
   }
 
   getCachedData() {
     return from(this.localStorage);
+  }
+
+  getMovieDetail(movieId: String) {
+    const path = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
+    this.http.get(path)
+      .subscribe(data => {
+
+        this.movieDetail = data
+        console.log('movie detail from service', this.movieDetail)
+
+
+
+      })
+    return this.movieDetail
   }
 
 
