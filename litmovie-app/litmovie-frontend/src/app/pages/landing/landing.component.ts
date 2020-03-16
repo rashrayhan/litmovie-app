@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { GetMoviesService } from '../../services/get-movies.service';
-import {IMAGE_BASE_URL, } from '../../../config'
+import { IMAGE_BASE_URL, } from '../../../config'
 
 @Component({
   selector: 'app-landing',
@@ -22,10 +22,16 @@ export class LandingComponent implements AfterContentChecked {
       this.data = data;
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
       console.dir(this.data);
+      console.log('here')
     });
 
   }
 
+  handleClick() {
+    this.getMoviesServies.handleClick()
 
+
+
+  }
 
 }
