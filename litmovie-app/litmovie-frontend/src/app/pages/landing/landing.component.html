@@ -2,7 +2,7 @@
 
 <mat-grid-list cols="4" rowHeight="140px" class="mgl-landing">
 
-  <mat-grid-tile [colspan]="4" [rowspan]="4" class="mtg-posters" routerLink="/movie-link">
+  <mat-grid-tile [routerLink] = "['/moviedetails']"[queryParams]="{movieID: movieID}" [colspan]="4" [rowspan]="4" class="mtg-posters">
     <img [src]="IMG_URL">
 
     <p>
@@ -22,7 +22,7 @@
 <div class="mdb-container px-5">
 
   <mdb-card *ngFor="let d of data" class="my-2">
-    <a href="#" mdbBtn mdbWavesEffect title="{{d['original_title']}}">
+    <a [routerLink] = "['/moviedetails']"[queryParams]="{movieID: d['id']}"  mdbBtn mdbWavesEffect title="{{d['original_title']}}">
 
       <mdb-card-img src="{{IMG_URL_POSTER}}{{d['poster_path']}}" alt="{{d['original_title']}}">
       </mdb-card-img>

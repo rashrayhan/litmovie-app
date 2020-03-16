@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, EmailValidator, MinLengthValidator } from '@angular/forms';
+import { FormBuilder, Validators, EmailValidator } from '@angular/forms';
 
 
 @Component({

@@ -16,6 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
+import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    MoviedetailsComponent
   ],
   imports: [
     BrowserModule,
