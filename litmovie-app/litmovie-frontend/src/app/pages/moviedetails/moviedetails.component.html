@@ -27,33 +27,33 @@
 <h1 class="text-center">Movie Details</h1>
 <hr />
 
-<table mdbTable striped="true" class="col-9 container">
+<table mdbTable striped="true" class="col-9 container" >
 
   <tbody>
     <tr mdbTableCol>
       <th scope="row">Title</th>
-      <td colspan="3">title of the movie</td>
+      <td colspan="3">{{movie.title}}</td>
       <th>Release date</th>
-      <td>data </td>
+      <td>{{releaseDate}} </td>
 
     </tr>
 
     <tr mdbTableCol>
       <th scope="row">Runtime</th>
-      <td>title of the movie</td>
+      <td>{{runtime}}</td>
       <th>Vote Count</th>
-      <td>data </td>
+      <td>{{voteCount}} </td>
       <th>Vote Average</th>
-      <td>data </td>
+      <td>{{voteAverage}} </td>
     </tr>
 
     <tr mdbTableCol>
       <th scope="row">Status</th>
-      <td>title of the movie</td>
+      <td>{{status}}</td>
       <th>Popularity</th>
-      <td>data </td>
+      <td>{{popularity}} </td>
       <th>Revenue</th>
-      <td>data </td>
+      <td>{{revenue}} </td>
     </tr>
   </tbody>
 </table>

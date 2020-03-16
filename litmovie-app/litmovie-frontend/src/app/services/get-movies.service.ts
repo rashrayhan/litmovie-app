@@ -47,20 +47,9 @@ export class GetMoviesService {
 
   getMovieDetail(movieId: String) {
     const path = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
-    this.http.get(path)
-      .subscribe(data => {
+    return this.http.get(path)
 
-        this.movieDetail = data;
-        console.log('movie detail from service', this.movieDetail);
-
-
-
-      })
-    return this.movieDetail;
   }
-
-
-
 
 
 }

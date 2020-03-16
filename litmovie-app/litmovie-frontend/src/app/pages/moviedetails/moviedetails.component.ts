@@ -1,51 +1,48 @@
-import { Component, AfterContentChecked, OnInit} from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GetMoviesService } from '../../services/get-movies.service';
 import { IMAGE_BASE_URL, } from '../../../config';
-import { store } from '../../../store';
-import { loadData } from '../../../actions/action';
-import { from } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-moviedetails',
   templateUrl: './moviedetails.component.html',
   styleUrls: ['./moviedetails.component.scss']
 })
-export class MoviedetailsComponent implements AfterContentChecked{
+export class MoviedetailsComponent implements OnInit{
   data: any;
-  data1: any;
   Unsubscribe;
   IMG_URL: any;
   IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
   movieID: number;
-  title: string;
-  overview: string;
-  movieId;
-  movie;
+  movieId;  movie;
+  title; overview; releaseDate; runtime; revenue; status; popularity;
+  voteCount; voteAverage;
 
   constructor(private getMoviesServies: GetMoviesService,  private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.movieId = params['movieID'];
-      console.log('movie id', this.movieId)
-    })
+      console.log('movie id', this.movieId);
+    });
   }
 
-  ngAfterContentChecked(): void {
-    this.getMoviesServies.getCachedData().subscribe((data) => {
-      console.dir('com', data);
-      this.data = data;
-      this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
-      this.movieID = this.data[0].id;
-      this.title = this.data[0].title;
-      this.overview = this.data[0].overview;
-      console.dir(this.data);
+
+  ngOnInit() {
+
+
+    this.getMoviesServies.getMovieDetail(this.movieId).subscribe((data) => {
+      console.log('movie detail from init ', data);
+      this.movie = data;
+      console.log('this.movie', this.movie);
+      this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.movie.backdrop_path}`;
+      this.title = this.movie.title;
+      this.overview = this.movie.overview;
+      this.releaseDate = this.movie.release_date;
+      this.revenue = this.movie.revenue;
+      this.runtime = this.movie.runtime;
+      this.status = this.movie.status;
+      this.popularity = this.movie.popularity;
+      this.voteCount = this.movie.vote_count;
+      this.voteAverage = this.movie.vote_average;
     });
-
-    // async  ngOnInit() {
-      this.movie = this.getMoviesServies.getMovieDetail(this.movieId)
-      console.log('movie detail from init ', this.movie)
-
-    // }
   }
 }
