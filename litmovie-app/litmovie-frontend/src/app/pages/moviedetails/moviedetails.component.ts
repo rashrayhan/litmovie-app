@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnChanges } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { GetMoviesService } from '../../services/get-movies.service';
 @Component({
@@ -17,9 +17,13 @@ export class MoviedetailsComponent implements OnInit {
   }
 
 
-  async  ngOnInit() {
+  ngOnInit() {
 
-    this.movie = await this.getMoviesServies.getMovieDetail(this.movieId)
+
+    this.getMoviesServies.getMovieDetail(this.movieId).subscribe((data) => {
+      console.log('movie detail from init ', data)
+      this.movie = data
+    })
     // .subscribe((data) => {
     //   console.log('movie d ', data)
     //   this.movie = data
@@ -27,7 +31,7 @@ export class MoviedetailsComponent implements OnInit {
 
 
 
-    console.log('movie detail from init ', this.movie)
+
 
 
   }
