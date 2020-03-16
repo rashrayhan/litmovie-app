@@ -10,14 +10,28 @@ export class GetMoviesService {
 
 
   localStorage = [];
+  currentPage: number
 
   constructor(private http: HttpClient) { }
 
-  getOnlineData() {
-    this.http.get(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`).subscribe(data => {
+
+  fetchMovies(path) {
+    this.http.get(path).subscribe(data => {
       //  console.dir(data)
+      this.currentPage = data['page']
       this.localStorage.push(data["results"]);
-    });
+
+
+    })
+  }
+  getOnlineData() {
+    this.fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
+
+  }
+
+  handleClick() {
+    this.fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${this.currentPage + 1}`)
+
   }
 
   getCachedData() {

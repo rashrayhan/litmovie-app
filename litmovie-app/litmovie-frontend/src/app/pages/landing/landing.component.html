@@ -1,6 +1,6 @@
-<mat-grid-list cols="4" rowHeight="100px">
+<mat-grid-list cols="4" rowHeight="2:1">
 
-  <mat-grid-tile [colspan]="4" [rowspan]="4" class="mtg-posters" style="background-position: center; background-size: cover; ">
+  <mat-grid-tile [colspan]="4" [rowspan]="4" class="mtg-posters">
     <img [src]="IMG_URL">
 
   </mat-grid-tile>
@@ -17,7 +17,7 @@
 
 <div class="load-more">
 
-  <button mat-fab aria-label="Example icon-button with a heart icon">
+  <button (click)="handleClick()" mat-fab aria-label="Example icon-button with a heart icon">
     <mat-icon>add</mat-icon>
   </button>
 
