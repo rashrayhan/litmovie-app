@@ -25,17 +25,20 @@ export class LandingComponent implements AfterContentChecked {
   constructor(private getMoviesServies: GetMoviesService) { }
 
   ngAfterContentChecked(): void {
-    this.getMoviesServies.getCachedData().subscribe((data) => {
-      
-      console.dir('com', data)
-      this.data = data;
-      this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
-      this.movieID = this.data[0].id;
-      this.title = this.data[0].title;
-      this.overview = this.data[0].overview;
-      console.dir(this.data);
-      console.log('here');
-    });
+    this.data = this.getMoviesServies.getCachedData()
+
+    // .subscribe((data) => {
+
+    //   console.dir('com', data)
+    //   this.data = data;
+    let img = this.data[0].backdrop_path
+    this.IMG_URL = `${IMAGE_BASE_URL}w1280${img}`;
+    this.movieID = this.data[0].id;
+    this.title = this.data[0].title;
+    this.overview = this.data[0].overview;
+    //   // console.dir(this.data);
+    //   console.log('here');
+    // });
 
   }
 

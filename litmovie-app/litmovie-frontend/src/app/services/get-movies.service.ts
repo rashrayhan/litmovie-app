@@ -20,13 +20,16 @@ export class GetMoviesService {
     this.http.get(path)
       .subscribe(data => {
         this.currentPage = data['page']
+
         let tempo: [] = data['results'];
-        console.log('hello', tempo)
-        this.localStorage = [...this.localStorage, tempo]
+        // console.log('hello', tempo)
+        // this.localStorage = [...this.localStorage, tempo]
+        this.localStorage = this.localStorage.concat(tempo)
+        this.merged = this.localStorage
         let temp1 = [];
 
-        this.merged = [].concat.apply([], this.localStorage);
-        console.log('l', this.localStorage, 'merged', this.merged);
+        // this.merged = [].concat.apply([], this.localStorage);
+        // console.log('merged', this.merged)
 
       });
   }
@@ -42,7 +45,7 @@ export class GetMoviesService {
   }
 
   getCachedData() {
-    return from(this.localStorage);
+    return this.localStorage;
   }
 
   getMovieDetail(movieId: String) {
