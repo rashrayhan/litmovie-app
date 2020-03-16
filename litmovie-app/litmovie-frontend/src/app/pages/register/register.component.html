@@ -1,1 +1,30 @@
 <app-navbar></app-navbar>
+
+    <div class="login">
+      <h2 class="login-header">Registration Form</h2>
+      <form [formGroup]="registrationForm" class="login-container" (ngSubmit)="login()">
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.Name.errors }">
+        <input type="text" placeholder="First Name" formControlName="Name">
+      </p>
+      <p  [ngClass]="{ 'has-error': isSubmitted && formControls.LastName.errors }">
+        <input type="txet" placeholder="Last Name" formControlName="LastName" >
+      </p>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.Email.errors }">
+          <input type="email" placeholder="Email" formControlName="Email">
+        </p>
+        <div *ngIf="isSubmitted && formControls.Email.errors" class="help-block">
+          <div *ngIf="formControls.Email.errors.required">Email is required</div>
+          <div *ngIf="!registrationForm.get('Email').valid">Invalid email</div>
+        </div>
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls.Password.errors }">
+          <input type="password" placeholder="Password" formControlName="Password">
+        </p>
+        <div *ngIf="isSubmitted && formControls.Password.errors" class="help-block">
+          <div *ngIf="formControls.Password.errors.required">Password is required</div>
+        </div>
+
+        <p>
+          <input type="submit" value="Register">
+        </p>
+      </form>
+    </div>
