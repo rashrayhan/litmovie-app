@@ -18,6 +18,8 @@ export class LandingComponent implements AfterContentChecked, OnDestroy {
   Unsubscribe;
   IMG_URL: any;
   IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
+  title: string;
+  overview: string;
 
   constructor(private getMoviesServies: GetMoviesService) { }
   ngOnDestroy(): void {
@@ -50,8 +52,10 @@ export class LandingComponent implements AfterContentChecked, OnDestroy {
       console.dir('com', data)
       this.data = data;
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
-      console.dir(this.data[0].backdrop_path);
-      console.log('com here', this.data)
+      this.title = this.data[0].title;
+      this.overview = this.data[0].overview;
+      console.dir(this.data);
+      console.log('here');
     });
 
   }

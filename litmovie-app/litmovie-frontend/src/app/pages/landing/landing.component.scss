@@ -1,0 +1,33 @@
+.mgl-landing{
+  mat-grid-tile{
+    cursor: pointer;
+
+    img{
+      min-width: 100%;
+      position: relative;
+    }
+
+    p{
+      position: absolute;
+      color: #fff;
+      padding: 40px;
+      bottom: 0;
+      left: 0;
+      max-width: 50%;
+    }
+  }
+}
+.mdb-container{
+  .card{
+    box-shadow: none;
+  }
+  mdb-card{
+    display: inline-block;
+    width: 25%;
+    border: none;
+    a{
+      padding: 0px;
+    }
+  }
+
+}
