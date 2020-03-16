@@ -28,10 +28,7 @@ export class LandingComponent implements AfterContentChecked {
   }
 
   handleClick() {
-    this.getMoviesServies.handleClick()
-
-
-
+    this.getMoviesServies.handleClick();
   }
 
 }
