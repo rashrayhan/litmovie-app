@@ -1,9 +1,10 @@
-import { Component, AfterContentChecked} from '@angular/core';
+import { Component, AfterContentChecked, OnInit} from '@angular/core';
 import { GetMoviesService } from '../../services/get-movies.service';
 import { IMAGE_BASE_URL, } from '../../../config';
 import { store } from '../../../store';
 import { loadData } from '../../../actions/action';
 import { from } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { from } from 'rxjs';
   templateUrl: './moviedetails.component.html',
   styleUrls: ['./moviedetails.component.scss']
 })
-export class MoviedetailsComponent implements AfterContentChecked {
+export class MoviedetailsComponent implements AfterContentChecked{
   data: any;
   data1: any;
   Unsubscribe;
@@ -20,8 +21,15 @@ export class MoviedetailsComponent implements AfterContentChecked {
   movieID: number;
   title: string;
   overview: string;
+  movieId;
+  movie;
 
-  constructor(private getMoviesServies: GetMoviesService) { }
+  constructor(private getMoviesServies: GetMoviesService,  private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.movieId = params['movieID'];
+      console.log('movie id', this.movieId)
+    })
+  }
 
   ngAfterContentChecked(): void {
     this.getMoviesServies.getCachedData().subscribe((data) => {
@@ -34,7 +42,10 @@ export class MoviedetailsComponent implements AfterContentChecked {
       console.dir(this.data);
     });
 
+    // async  ngOnInit() {
+      this.movie = this.getMoviesServies.getMovieDetail(this.movieId)
+      console.log('movie detail from init ', this.movie)
+
+    // }
   }
-
-
 }

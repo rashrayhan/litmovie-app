@@ -26,6 +26,7 @@ export class LandingComponent implements AfterContentChecked {
 
   ngAfterContentChecked(): void {
     this.getMoviesServies.getCachedData().subscribe((data) => {
+      
       console.dir('com', data)
       this.data = data;
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
