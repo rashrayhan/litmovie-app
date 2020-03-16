@@ -12,7 +12,7 @@ import { from } from 'rxjs';
 })
 
 
-export class LandingComponent implements AfterContentChecked, OnDestroy {
+export class LandingComponent implements AfterContentChecked {
   data: any;
   data1: any;
   Unsubscribe;
@@ -22,9 +22,9 @@ export class LandingComponent implements AfterContentChecked, OnDestroy {
   overview: string;
 
   constructor(private getMoviesServies: GetMoviesService) { }
-  ngOnDestroy(): void {
-    this.Unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.Unsubscribe();
+  // }
   // ngOnInit() {
 
   //  this.data1 = store.getState().data;
