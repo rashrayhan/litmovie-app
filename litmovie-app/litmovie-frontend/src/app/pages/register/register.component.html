@@ -1,1 +1,11 @@
 <app-navbar></app-navbar>
+  <div class="login">
+    <h2 class="login-header">Registration Form</h2>
+    <form [formGroup]="registrationForm" class="login-container">
+    <input type="text" placeholder="Name" formControlName="name" >
+    <input type="email" placeholder="Email" formControlName="email" >
+    <div *ngIf="!registrationForm.get('email').valid">Invalid email</div>
+    <br>
+    <input type="password" placeholder="Password" formControlName="password">
+    <input type="txet" placeholder="Last Name" formControlName="lastName" >
+    </form>
