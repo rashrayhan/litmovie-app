@@ -1,16 +1,29 @@
 const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
-
-const port = process.env.port || 4600;
 require('dotenv').config()
 const mongoose = require('mongoose')
-
-
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+//const config = require("./config/key");
+const port = process.env.port || 4600;
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'dist/evoting-app')));
 app.use(helmet());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+//app.use('/api/users', require('./routes/users'));
+//app.use('/api/comment', require('./routes/comment'));
+//app.use('/api/like', require('./routes/like'));
+app.use('/api/favorite', require('./routes/favorite'));
+//app.use('/uploads', express.static('uploads'));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 
 //general routes *
