@@ -1,1 +1,91 @@
-<p>moviedetails works!</p>
+<app-loggedinnavbar></app-loggedinnavbar>
+
+<mat-grid-list cols="4" rowHeight="140px" class="mgl-landing">
+
+  <mat-grid-tile [routerLink] = "['/moviedetails']"[queryParams]="{movieID: movieID}" [colspan]="4" [rowspan]="4" class="mtg-posters">
+    <img [src]="IMG_URL">
+
+    <p>
+      <span class="h1">{{title}}</span>
+      <br />
+      <span class="">{{overview}}</span>
+    </p>
+
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+<div class="text-right my-3 mx-5">
+
+  <button mat-fab aria-label="Add to favorite">
+    <mat-icon>favorite_border</mat-icon> 0
+  </button>
+
+</div>
+
+
+<h1 class="text-center">Movie Details</h1>
+<hr />
+
+<table mdbTable striped="true" class="col-9 container">
+
+  <tbody>
+    <tr mdbTableCol>
+      <th scope="row">Title</th>
+      <td colspan="3">title of the movie</td>
+      <th>Release date</th>
+      <td>data </td>
+
+    </tr>
+
+    <tr mdbTableCol>
+      <th scope="row">Runtime</th>
+      <td>title of the movie</td>
+      <th>Vote Count</th>
+      <td>data </td>
+      <th>Vote Average</th>
+      <td>data </td>
+    </tr>
+
+    <tr mdbTableCol>
+      <th scope="row">Status</th>
+      <td>title of the movie</td>
+      <th>Popularity</th>
+      <td>data </td>
+      <th>Revenue</th>
+      <td>data </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="text-center mb-4 mt-4">
+
+  <a mat-stroked-button color="primary" routerLink=".">Show Movie Actors</a>
+</div>
+
+
+<!-- movie actors -->
+<!-- <div class="mdb-container px-5">
+
+  <mdb-card *ngFor="let d of data" class="my-2">
+    <a [routerLink] = "['/moviedetails']"[queryParams]="{movieID: d['id']}"  mdbBtn mdbWavesEffect title="{{d['original_title']}}">
+
+      <mdb-card-img src="{{IMG_URL_POSTER}}{{d['poster_path']}}" alt="{{d['original_title']}}">
+      </mdb-card-img>
+    </a>
+  </mdb-card>
+</div> -->
+
+<div class="text-center mb-4 mt-4">
+
+  <button mat-icon-button aria-label="like" class="mr-4">
+    <mat-icon color="accent" >thumb_up</mat-icon> 20
+  </button>
+
+  <button mat-icon-button aria-label="dislike">
+    <mat-icon color="warn" >thumb_down</mat-icon> 12
+  </button>
+</div>
+
+<h3 class="text-left text-muted px-3">Comment on {{title}}</h3><hr/>
