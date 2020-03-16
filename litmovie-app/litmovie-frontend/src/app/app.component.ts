@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GetMoviesService } from './services/get-movies.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Lit Movie';
+
+  constructor(private getMoviesServies: GetMoviesService) { }
+
+  ngOnInit() {
+    this.getMoviesServies.getOnlineData();
+  }
+
+
 }
