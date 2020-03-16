@@ -13,6 +13,8 @@ export class LandingComponent implements AfterContentChecked {
   data: any;
   IMG_URL: any;
   IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
+  title: string;
+  overview: string;
 
   constructor(private getMoviesServies: GetMoviesService) { }
 
@@ -21,8 +23,10 @@ export class LandingComponent implements AfterContentChecked {
     this.getMoviesServies.getCachedData().subscribe((data) => {
       this.data = data;
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
+      this.title = this.data[0].title;
+      this.overview = this.data[0].overview;
       console.dir(this.data);
-      console.log('here')
+      console.log('here');
     });
 
   }
