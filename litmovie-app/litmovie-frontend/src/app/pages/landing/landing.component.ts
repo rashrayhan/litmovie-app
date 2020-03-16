@@ -12,6 +12,7 @@ import {IMAGE_BASE_URL, } from '../../../config'
 export class LandingComponent implements AfterContentChecked {
   data: any;
   IMG_URL: any;
+  IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
 
   constructor(private getMoviesServies: GetMoviesService) { }
 
@@ -20,7 +21,6 @@ export class LandingComponent implements AfterContentChecked {
     this.getMoviesServies.getCachedData().subscribe((data) => {
       this.data = data;
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
-
       console.dir(this.data);
     });
 

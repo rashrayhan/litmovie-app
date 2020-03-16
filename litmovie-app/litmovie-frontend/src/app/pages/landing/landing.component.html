@@ -1,17 +1,19 @@
 <mat-grid-list cols="4" rowHeight="100px">
 
-  <mat-grid-tile [colspan]="4" [rowspan]="5">
+  <mat-grid-tile [colspan]="4" [rowspan]="4" class="mtg-posters" style="background-position: center; background-size: cover; ">
     <img [src]="IMG_URL">
-    <!-- {{data['original_title']}} -->
-  </mat-grid-tile>
-
-  <mat-grid-tile *ngFor="let d of data" [colspan]="1" [rowspan]="2">
-    <!-- <img [src]="IMG_URL_POSTER"> -->
-
 
   </mat-grid-tile>
+
 
 </mat-grid-list>
+
+
+<mdb-card *ngFor="let d of data" style="display: inline-block; width: 25%; ">
+  <a href="#" mdbBtn mdbWavesEffect title="{{d['original_title']}}">
+    <mdb-card-img src="{{IMG_URL_POSTER}}{{d['poster_path']}}" alt="{{d['original_title']}}"></mdb-card-img>
+  </a>
+</mdb-card>
 
 <div class="load-more">
 
