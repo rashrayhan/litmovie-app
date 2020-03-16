@@ -9,14 +9,20 @@ import { IMAGE_BASE_URL, } from '../../../config';
   styleUrls: ['./moviedetails.component.scss']
 })
 export class MoviedetailsComponent implements OnInit{
+  actorsShow = true;
   data: any;
   Unsubscribe;
   IMG_URL: any;
-  IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
+  IMG_URL_CREW = `${IMAGE_BASE_URL}w500`;
   movieID: number;
-  movieId;  movie;
+  movieId;  movie; casts: any;
   title; overview; releaseDate; runtime; revenue; status; popularity;
   voteCount; voteAverage;
+
+
+  toggleActors() {
+    this.actorsShow = !this.actorsShow;
+  }
 
   constructor(private getMoviesServies: GetMoviesService,  private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
@@ -44,5 +50,12 @@ export class MoviedetailsComponent implements OnInit{
       this.voteCount = this.movie.vote_count;
       this.voteAverage = this.movie.vote_average;
     });
+
+    this.getMoviesServies.getCastDetail(this.movieId).subscribe((data2) => {
+      this.casts = data2['cast'];
+      console.log('this.movie.cast', data2['cast']);
+    });
   }
+
+
 }
