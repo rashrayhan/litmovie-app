@@ -4,7 +4,10 @@
       <h2 class="login-header">Registration Form</h2>
       <form [formGroup]="registrationForm" class="login-container" (ngSubmit)="login()">
         <p [ngClass]="{ 'has-error': isSubmitted && formControls.Name.errors }">
-        <input type="text" placeholder="Name" formControlName="Name">
+        <input type="text" placeholder="First Name" formControlName="Name">
+      </p>
+      <p  [ngClass]="{ 'has-error': isSubmitted && formControls.LastName.errors }">
+        <input type="txet" placeholder="Last Name" formControlName="LastName" >
       </p>
         <p [ngClass]="{ 'has-error': isSubmitted && formControls.Email.errors }">
           <input type="email" placeholder="Email" formControlName="Email">
@@ -19,9 +22,7 @@
         <div *ngIf="isSubmitted && formControls.Password.errors" class="help-block">
           <div *ngIf="formControls.Password.errors.required">Password is required</div>
         </div>
-        <p  [ngClass]="{ 'has-error': isSubmitted && formControls.LastName.errors }">
-        <input type="txet" placeholder="Last Name" formControlName="LastName" >
-      </p>
+
         <p>
           <input type="submit" value="Register">
         </p>

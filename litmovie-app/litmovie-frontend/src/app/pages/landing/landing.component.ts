@@ -18,40 +18,18 @@ export class LandingComponent implements AfterContentChecked {
   Unsubscribe;
   IMG_URL: any;
   IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
+  movieID: number;
   title: string;
   overview: string;
 
   constructor(private getMoviesServies: GetMoviesService) { }
-  // ngOnDestroy(): void {
-  //   this.Unsubscribe();
-  // }
-  // ngOnInit() {
 
-  //  this.data1 = store.getState().data;
-  //   this.Unsubscribe = store.subscribe(() => {
-  //     this.data1 =store.getState().data;
-  //     console.log(this.data1)
-  //   })
-  // }
-
-
-
-  // ngAfterContentChecked(): void {
-  //   this.getMoviesServies.getCachedData().subscribe((data) => {
-
-  //     store.dispatch(loadData(data))
-
-  //     this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data1[0].data[0].backdrop_path}`;
-  //     console.dir(this.data1);
-  //     console.log('here')
-  //   });
-
-  // }
   ngAfterContentChecked(): void {
     this.getMoviesServies.getCachedData().subscribe((data) => {
       console.dir('com', data)
       this.data = data;
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
+      this.movieID = this.data[0].id;
       this.title = this.data[0].title;
       this.overview = this.data[0].overview;
       console.dir(this.data);
