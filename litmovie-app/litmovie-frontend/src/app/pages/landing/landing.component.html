@@ -1,20 +1,23 @@
 <app-navbar></app-navbar>
 
-<mat-grid-list cols="4" rowHeight="100px" class="">
+<mat-grid-list cols="4" rowHeight="150px" class="">
 
-  <mat-grid-tile [colspan]="4" [rowspan]="4" class="mtg-posters" style="width: 100%;background-position: center; background-size: cover; ">
-    <img [src]="IMG_URL">
+  <mat-grid-tile [colspan]="4" [rowspan]="4" class="mtg-posters">
+    <img [src]="IMG_URL" style="min-width:100%">
 
   </mat-grid-tile>
 
 
 </mat-grid-list>
 
-<h1 class="text-center mt-4">Latest Movies</h1> <hr/>
+<h1 class="text-center mt-4">Latest Movies</h1>
+<hr />
 
-<mdb-card *ngFor="let d of data" style="display: inline-block; width: 25%;">
+<mdb-card *ngFor="let d of data " style="display: inline-block; width: 25%;">
   <a href="#" mdbBtn mdbWavesEffect title="{{d['original_title']}}">
-    <mdb-card-img src="{{IMG_URL_POSTER}}{{d['poster_path']}}" alt="{{d['original_title']}}"></mdb-card-img>
+
+    <mdb-card-img src="{{IMG_URL_POSTER}}{{d['poster_path']}}" alt="{{d['original_title']}}">
+    </mdb-card-img>
   </a>
 </mdb-card>
 
