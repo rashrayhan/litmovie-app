@@ -5,10 +5,11 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+var cors = require('cors')
 //const config = require("./config/key");
 const port = process.env.port || 4600;
 const app = express();
-
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'dist/evoting-app')));
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
