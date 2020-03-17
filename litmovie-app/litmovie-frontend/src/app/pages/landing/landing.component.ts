@@ -21,6 +21,8 @@ export class LandingComponent implements AfterContentChecked {
   movieID: number;
   title: string;
   overview: string;
+  uuid: string;
+
 
   constructor(private getMoviesServies: GetMoviesService) { }
 
@@ -36,10 +38,15 @@ export class LandingComponent implements AfterContentChecked {
     //   console.log('here');
     // });
 
+    this.uuid = window.localStorage.getItem('userId');
+
   }
 
   handleClick() {
     this.getMoviesServies.handleClick();
   }
+
+
+
 
 }

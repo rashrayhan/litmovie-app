@@ -74,22 +74,21 @@ export class MoviedetailsComponent implements OnInit {
         if (res.success) {
           console.log(res.success)
           this.favNumber = res.subscribeNumber
-        }
-        else { alert('failed to get fav number') }
+        }else { alert('failed to get fav number') }
 
 
       })
 
-      this.GetFavoritesServiceService.getIsFavorited(variable).subscribe((res) => {
-        console.dir(res)
-        if (res.success) {
-          this.favorited = res.subcribed
-          console.log(this.favorited)
-        }
-        else { alert('failed to get info about favorited') }
+      // this.GetFavoritesServiceService.getIsFavorited(variable).subscribe((res) => {
+      //   console.dir(res)
+      //   if (res.success) {
+      //     this.favorited = res.subcribed
+      //     console.log(this.favorited)
+      //   }
+      //   else { alert('failed to get info about favorited') }
 
 
-      })
+      // })
 
     });
 
