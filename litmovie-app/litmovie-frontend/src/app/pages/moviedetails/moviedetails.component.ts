@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GetMoviesService } from '../../services/get-movies.service';
 import { GetFavoritesServiceService } from '../../services/favorites/get-favorites-service.service';
 import { IMAGE_BASE_URL, } from '../../../config';
-import { runInThisContext } from 'vm';
+
 
 @Component({
   selector: 'app-moviedetails',
@@ -23,7 +23,8 @@ export class MoviedetailsComponent implements OnInit {
   comments: string; postComment = [];
   trailer: string;
   favNumber: number;
-  favorited: any
+  favorited: any;
+  variable: any;
 
 
 
@@ -61,7 +62,7 @@ export class MoviedetailsComponent implements OnInit {
       this.popularity = this.movie.popularity;
       this.voteCount = this.movie.vote_count;
       this.voteAverage = this.movie.vote_average;
-      const variable = {
+      this.variable = {
         userFrom: window.localStorage.getItem('userId'),
         movieId: this.movieId,
         movieTitle: this.title,
@@ -69,26 +70,27 @@ export class MoviedetailsComponent implements OnInit {
         movieRunTime: this.runtime
       }
 
-      this.GetFavoritesServiceService.getFavoriteNumber(variable).subscribe((res) => {
+      this.GetFavoritesServiceService.getFavoriteNumber(this.variable).subscribe((res) => {
 
-        if (res.success) {
-          console.log(res.success)
-          this.favNumber = res.subscribeNumber
-        }else { alert('failed to get fav number') }
+        if (res['success']) {
+          // console.log(res.success)
+          this.favNumber = res['subscribeNumber']
+        }
+        else { alert('failed to get fav number') }
 
 
       })
 
-      // this.GetFavoritesServiceService.getIsFavorited(variable).subscribe((res) => {
-      //   console.dir(res)
-      //   if (res.success) {
-      //     this.favorited = res.subcribed
-      //     console.log(this.favorited)
-      //   }
-      //   else { alert('failed to get info about favorited') }
+      this.GetFavoritesServiceService.getIsFavorited(this.variable).subscribe((res) => {
+        console.dir(res)
+        if (res['success']) {
+          this.favorited = res['subcribed']
+          console.log(this.favorited)
+        }
+        else { alert('failed to get info about favorited') }
 
 
-      // })
+      })
 
     });
 
@@ -105,8 +107,39 @@ export class MoviedetailsComponent implements OnInit {
     });
   }
 
-  handleFavorite() { }
+  handleFavorite() {
+
+    if (this.favorited) {
+      // when already added
+      this.GetFavoritesServiceService.removefavortie(this.variable).subscribe((res) => {
+        console.dir(res)
+        if (res['success']) {
+          this.favorited = !this.favorited
+          this.favNumber = this.favNumber - 1
+          //   this.favorited = res.subcribed
+          console.log(this.favorited)
+        }
+        else { alert('failed to remove from favorite') }
+
+
+      })
+    }
+    else {
+      // when not added
+      this.GetFavoritesServiceService.addtofavortie(this.variable).subscribe((res) => {
+        console.dir(res)
+        if (res['success']) {
+          this.favorited = !this.favorited
+          this.favNumber = this.favNumber + 1
+          //   this.favorited = res.subcribed
+          console.log(this.favorited)
+        }
+        else { alert('failed to add to favorite') }
+
+
+      })
+
+
+    }
+  }
 }
-
-
-

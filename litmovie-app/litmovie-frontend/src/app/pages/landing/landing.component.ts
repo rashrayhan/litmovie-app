@@ -34,11 +34,10 @@ export class LandingComponent implements AfterContentChecked {
     this.movieID = this.data[3].id;
     this.title = this.data[3].title;
     this.overview = this.data[3].overview;
-    //   // console.dir(this.data);
-    //   console.log('here');
-    // });
+
 
     this.uuid = window.localStorage.getItem('userId');
+    console.log('uuid', this.uuid);
 
   }
 
