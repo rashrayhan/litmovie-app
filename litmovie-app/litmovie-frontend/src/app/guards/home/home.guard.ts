@@ -23,7 +23,7 @@ export class HomeGuard implements CanActivate {
 
       if(!this.cookieservice.check(this.appconstant.logincookie) === false
       && JSON.parse(this.cookieservice.get(this.appconstant.logincookie)).status === true){
-        this.router.navigate(['home']);
+        this.router.navigate(['landing']);
         return true;
      }
       return true;
