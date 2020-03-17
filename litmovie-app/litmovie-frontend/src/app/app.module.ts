@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +14,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
+import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    MoviedetailsComponent,
+    LoggedinnavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +38,10 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MDBBootstrapModule.forRoot(),
+    MatFormFieldModule,
     ReactiveFormsModule,
-    MDBBootstrapModule.forRoot()
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

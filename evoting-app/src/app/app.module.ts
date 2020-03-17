@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
     RegisterComponent,
     VoteComponent,
     HomeComponent,
+
   ],
   imports: [
     BrowserModule,

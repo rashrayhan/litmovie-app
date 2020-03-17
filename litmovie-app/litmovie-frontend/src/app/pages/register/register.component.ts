@@ -7,8 +7,8 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registrationForm: FormGroup; 
-  isSubmitted  =  false; 
+  registrationForm: FormGroup;
+  isSubmitted  =  false;
   constructor(private formBuilder: FormBuilder) { }
 ngOnInit(){
   this.registrationForm = this.formBuilder.group({
@@ -23,7 +23,7 @@ get formControls() { return this.registrationForm.controls; }
 login(){
   console.log(this.registrationForm.value);
   this.isSubmitted = true;
-  if(this.registrationForm.invalid){
+  if (this.registrationForm.invalid){
     return;
   }
 }

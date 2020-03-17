@@ -1,6 +1,9 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { GetMoviesService } from '../../services/get-movies.service';
-import { IMAGE_BASE_URL, } from '../../../config'
+import { IMAGE_BASE_URL, } from '../../../config';
+import { store } from '../../../store';
+import { loadData } from '../../../actions/action';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-landing',
@@ -11,23 +14,27 @@ import { IMAGE_BASE_URL, } from '../../../config'
 
 export class LandingComponent implements AfterContentChecked {
   data: any;
+  data1: any;
+  Unsubscribe;
   IMG_URL: any;
   IMG_URL_POSTER = `${IMAGE_BASE_URL}w500`;
+  movieID: number;
   title: string;
   overview: string;
 
   constructor(private getMoviesServies: GetMoviesService) { }
 
-
   ngAfterContentChecked(): void {
-    this.getMoviesServies.getCachedData().subscribe((data) => {
-      this.data = data;
-      this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.data[0].backdrop_path}`;
-      this.title = this.data[0].title;
-      this.overview = this.data[0].overview;
-      console.dir(this.data);
-      console.log('here');
-    });
+    this.data = this.getMoviesServies.getCachedData()
+
+    let img = this.data[3].backdrop_path;
+    this.IMG_URL = `${IMAGE_BASE_URL}w1280${img}`;
+    this.movieID = this.data[3].id;
+    this.title = this.data[3].title;
+    this.overview = this.data[3].overview;
+    //   // console.dir(this.data);
+    //   console.log('here');
+    // });
 
   }
 

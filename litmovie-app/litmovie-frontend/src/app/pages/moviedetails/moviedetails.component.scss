@@ -1,0 +1,52 @@
+.mgl-landing{
+  mat-grid-tile{
+    cursor: pointer;
+
+    img{
+      min-width: 100%;
+      position: relative;
+    }
+
+    p{
+      position: absolute;
+      color: #fff;
+      padding: 40px;
+      bottom: 0;
+      left: 0;
+      max-width: 50%;
+    }
+  }
+}
+.mdb-container{
+  .card{
+    box-shadow: none;
+  }
+  mdb-card{
+    display: inline-block;
+    width: 25%;
+    border: none;
+    a{
+      padding: 0px;
+    }
+  }
+
+}
+.ls-comments{
+  display: flex;
+  border-bottom: 1px solid #DDD;
+
+  img{
+    flex: 0.2;
+    max-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+  p{
+    flex: 0.8;
+
+    span{
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<app-loggedinnavbar></app-loggedinnavbar>
+
+<mat-grid-list cols="4" rowHeight="140px" class="mgl-landing">
+
+  <mat-grid-tile [routerLink]="['/moviedetails']" [queryParams]="{movieID: movieID}" [colspan]="4" [rowspan]="4"
+    class="mtg-posters">
+    <img [src]="IMG_URL">
+
+    <p>
+      <span class="h1">{{title}}</span>
+      <br />
+      <span class="">{{overview}}</span>
+    </p>
+
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+<div class="text-right my-3 mx-5">
+
+  <button (click)="handleFavorite()" mat-fab aria-label="Add to favorite">
+    <mat-icon>favorite_border</mat-icon> 0
+  </button>
+
+</div>
+
+
+<h1 class="text-center">Movie Details</h1>
+<hr />
+
+<table mdbTable striped="true" class="col-9 container">
+
+  <tbody>
+    <tr mdbTableCol>
+      <th scope="row">Title</th>
+      <td colspan="3">{{title}}</td>
+      <th>Release date</th>
+      <td>{{releaseDate}} </td>
+
+    </tr>
+
+    <tr mdbTableCol>
+      <th scope="row">Runtime</th>
+      <td>{{runtime}}</td>
+      <th>Vote Count</th>
+      <td>{{voteCount}} </td>
+      <th>Vote Average</th>
+      <td>{{voteAverage}} </td>
+    </tr>
+
+    <tr mdbTableCol>
+      <th scope="row">Status</th>
+      <td>{{status}}</td>
+      <th>Popularity</th>
+      <td>{{popularity}} </td>
+      <th>Revenue</th>
+      <td>{{revenue}} </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="text-center mb-4 mt-4">
+
+  <a mat-stroked-button color="primary" (click)="toggleActors()">Toggle Movie Actors</a>
+</div>
+
+
+<!-- movie actors -->
+<div class="mdb-container px-5" *ngIf="!actorsShow">
+
+  <mdb-card *ngFor="let m of casts" class="my-1 px-1">
+
+    <p *ngIf="m['profile_path'] != null">
+      <mdb-card-img src="{{IMG_URL_CREW}}{{m['profile_path']}}" title="{{m.name}}" alt="{{m.name}}">
+      </mdb-card-img>
+    </p>
+    <p *ngIf="m['profile_path'] == null">
+      <mdb-card-img src="../../../assets/pbSz7d1aURy88HGzFWng5EoFU81.jpg" alt="not available">
+      </mdb-card-img>
+    </p>
+  </mdb-card>
+</div>
+
+<div class="text-center mb-4 mt-4">
+
+  <button mat-icon-button aria-label="like" class="mr-4">
+    <mat-icon color="accent">thumb_up</mat-icon> 20
+  </button>
+
+  <button mat-icon-button aria-label="dislike">
+    <mat-icon color="warn">thumb_down</mat-icon> 12
+  </button>
+</div>
+
+<h3 class="text-left text-muted px-3">Comment on {{title}}</h3><hr/>
+<!-- new comment -->
+<div class="px-5 col-6">
+
+  <div class="md-form">
+    <textarea type="text" [(ngModel)]="comments" id="form1" class="md-textarea form-control" mdbInput></textarea>
+    <label for="form1" class="">Add Comment</label>
+    <button (click)="post()" mdbBtn color="light" mdbWavesEffect>Send</button>
+  </div>
+
+
+  <!-- list of comments -->
+  <div class="my-2 ls-comments" *ngFor="let comm of postComment">
+    <img src="../../../assets/pbSz7d1aURy88HGzFWng5EoFU81.jpg"/>
+    <p class="px-2"> <span>John Doe</span> <br/>{{comm}}</p>
+
+  </div>
+</div>
