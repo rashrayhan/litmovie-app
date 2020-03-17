@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent, canActivate: [HomeGuard] },
-  { path: 'signup', component: RegisterComponent, canActivate: [HomeGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [HomeGuard] },
   { path: 'moviedetails', component: MoviedetailsComponent },
 ];
 

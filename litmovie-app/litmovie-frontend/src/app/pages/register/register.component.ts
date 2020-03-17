@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private service: SignupService, public snackBar: MatSnackBar) { }
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
-      Name: [''],
-      Email: ['', [Validators.required, Validators.email]],
-      Password: ['', [Validators.required, Validators.minLength(6)]],
-      LastName: [''],
+      name: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      lastname: [''],
     });
   }
   get formControls() { return this.registrationForm.controls; }
