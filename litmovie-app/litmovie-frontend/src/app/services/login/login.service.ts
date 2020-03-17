@@ -7,15 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private url = 'http://localhost:8080/api/v1/user/login';
+  private url = 'http://localhost:4600/api/users/login';
 
 
-  constructor(private httpclient: HttpClient) {}
+  constructor(private httpclient: HttpClient) { }
 
   loginUser(body): Observable<any> {
     // const model = { email: body.email, password: body.password };
     // console.log(model);
-  return  this.httpclient
+    return this.httpclient
       .post(this.url, body, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
