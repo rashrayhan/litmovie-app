@@ -9,15 +9,19 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
 import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.component';
+import { Appconstant } from './utils/appconstant';
+import { Localcookie } from './utils/localcookie';
+import { DatePipe } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,7 @@ import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.c
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Appconstant, CookieService, Localcookie, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
