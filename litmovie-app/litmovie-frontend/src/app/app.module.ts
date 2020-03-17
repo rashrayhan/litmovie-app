@@ -22,6 +22,9 @@ import { Appconstant } from './utils/appconstant';
 import { Localcookie } from './utils/localcookie';
 import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +48,8 @@ import { CookieService } from 'ngx-cookie-service';
     MDBBootstrapModule.forRoot(),
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
+    MatInputModule,
     FormsModule
   ],
   providers: [Appconstant, CookieService, Localcookie, DatePipe],
