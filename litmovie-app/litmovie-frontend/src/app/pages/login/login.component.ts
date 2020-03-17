@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, EmailValidator } from '@angular/forms';
+import { FormBuilder, Validators, EmailValidator, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -7,15 +7,14 @@ import { FormBuilder, Validators, EmailValidator } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginForm = this.fb.group({
-    email: ['', Validators.required, EmailValidator],
-    password: ['', Validators.required]
-  });
+export class LoginComponent {
+  elegantForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  constructor(public fb: FormBuilder) {
+    this.elegantForm = fb.group({
+      elegantFormEmailEx: ['', [Validators.required, Validators.email]],
+      elegantFormPasswordEx: ['', Validators.required],
+    });
   }
 
 }
