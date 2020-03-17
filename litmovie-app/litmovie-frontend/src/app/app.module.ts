@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
 import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.c
     NavbarComponent,
     FooterComponent,
     MoviedetailsComponent,
-    LoggedinnavbarComponent
+    LoggedinnavbarComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,

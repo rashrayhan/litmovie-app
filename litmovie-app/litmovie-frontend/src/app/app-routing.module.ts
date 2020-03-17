@@ -4,6 +4,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'moviedetails', component: MoviedetailsComponent},
+  {path: 'favorites', component: FavoritesComponent},
 ];
 
 @NgModule({
