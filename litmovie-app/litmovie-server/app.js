@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use('/api/users', require('./routes/user'));
 //app.use('/api/comment', require('./routes/comment'));
 //app.use('/api/like', require('./routes/like'));
-app.use('/api/favorite', require('./routes/favorite'));
+app.use('/api/favorites', require('./routes/favorite'));
 //app.use('/uploads', express.static('uploads'));
 
 app.get("*", (req, res) => {
