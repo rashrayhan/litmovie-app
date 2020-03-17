@@ -3,7 +3,9 @@ const router = express.Router();
 const { User } = require("../models/User");
 const { registerValidation, loginValidation } = require("../routes/validation");
 const { auth } = require("../middleware/auth");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const verify = require('./verifyToken')
 //=================================
 //             User
 //=================================
@@ -23,6 +25,7 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/register", async (req, res) => {
     const { error } = registerValidation(req.body);
+
     if (error) return res.json({ status: false, message: error.details[0].message });
 
     //check if the user is already in database
@@ -30,7 +33,7 @@ router.post("/register", async (req, res) => {
     if (emailExist) return res.json({ status: false, message: "Email already exists" });
     //Hash the passwords
     const salt = await bcrypt.genSalt(10);
-    const hashpassword = await bcrypt.hash(req.body.password, salt);
+    const hashpassword = bcrypt.hashSync(req.body.password, salt);
     const user = new User({
         name: req.body.name,
         email: req.body.email.toLowerCase(),
@@ -47,31 +50,49 @@ router.post("/register", async (req, res) => {
     }
 });
 
-router.post("/login", (req, res) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
-        if (!user)
-            return res.json({
-                loginSuccess: false,
-                message: "Auth failed, email not found"
-            });
+router.post("/login", async (req, res) => {
+    // const { error } = loginValidation(req.body);
+    // if (error) return res.json({ status: false, message: error.details[0].message });
+    // //Check if the email exists
+    const user = await User.findOne({ email: req.body.elegantFormEmailEx.toLowerCase() });
+    if (!user) return res.json({ status: false, message: "Email not found" });
+    //Password is correct
+    console.log(req.body.elegantFormPasswordEx)
+    const salt = await bcrypt.genSalt(10);
+    const hashpassword = bcrypt.hashSync(req.body.elegantFormPasswordEx, salt);
+    console.log(hashpassword)
 
-        user.comparePassword(req.body.password, (err, isMatch) => {
-            if (!isMatch)
-                return res.json({ loginSuccess: false, message: "Wrong password" });
-
-            user.generateToken((err, user) => {
-                if (err) return res.status(400).send(err);
-                res.cookie("w_authExp", user.tokenExp);
-                res
-                    .cookie("w_auth", user.token)
-                    .status(200)
-                    .json({
-                        loginSuccess: true, userId: user._id
-                    });
-            });
-        });
-    });
+    const validpass = bcrypt.compareSync(req.body.elegantFormPasswordEx, user.password);
+    console.log(user.password)
+    if (!validpass) return res.json({ status: false, message: 'Invalid Password' });
+    //Create and assign a token
+    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+    res.header('auth-token', token).json({ status: true, token: token, userId: user._id });
 });
+// User.findOne({ email: req.body.elegantFormEmailEx }, (err, user) => {
+//     if (!user)
+//         return res.json({
+//             loginSuccess: false,
+//             message: "Auth failed, email not found"
+//         });
+
+//     user.comparePassword(req.body.elegantFormPasswordEx, (err, isMatch) => {
+//         if (!isMatch)
+//             return res.json({ loginSuccess: false, message: "Wrong password" });
+
+//         user.generateToken((err, user) => {
+//             if (err) return res.status(400).send(err);
+//             res.cookie("w_authExp", user.tokenExp);
+//             res
+//                 .cookie("w_auth", user.token)
+//                 .status(200)
+//                 .json({
+//                     loginSuccess: true, userId: user._id
+//                 });
+//         });
+//     });
+// });
+
 
 router.get("/logout", auth, (req, res) => {
     User.findOneAndUpdate({ _id: req.user._id }, { token: "", tokenExp: "" }, (err, doc) => {

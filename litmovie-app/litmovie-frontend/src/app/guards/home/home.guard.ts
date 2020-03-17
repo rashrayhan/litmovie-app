@@ -16,17 +16,17 @@ export class HomeGuard implements CanActivate {
     private appconstant: Appconstant,
     private localCookie: Localcookie,
     public router: Router
-  ) {}
+  ) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if(!this.cookieservice.check(this.appconstant.logincookie) === false
-      && JSON.parse(this.cookieservice.get(this.appconstant.logincookie)).status === true){
-        this.router.navigate(['home']);
-        return true;
-     }
+    if (!this.cookieservice.check(this.appconstant.logincookie) === false
+      && JSON.parse(this.cookieservice.get(this.appconstant.logincookie)).status === true) {
+      this.router.navigate(['landing']);
       return true;
+    }
+    return true;
   }
 
 }

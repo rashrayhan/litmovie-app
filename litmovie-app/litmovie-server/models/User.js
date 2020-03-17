@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
@@ -15,7 +15,9 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        minglength: 5
+        required: true,
+        min: 6,
+        max: 1024
     },
     lastname: {
         type: String,
@@ -35,28 +37,30 @@ const userSchema = mongoose.Schema({
 })
 
 
-userSchema.pre('save', function (next) {
-    var user = this;
+// userSchema.pre('save', function (next) {
+//     var user = this;
 
-    if (user.isModified('password')) {
+//     if (user.isModified('password')) {
 
-        bcrypt.genSalt(saltRounds, function (err, salt) {
-            if (err) return next(err);
+//         bcrypt.genSalt(saltRounds, function (err, salt) {
+//             if (err) return next(err);
 
-            bcrypt.hash(user.password, salt, function (err, hash) {
-                if (err) return next(err);
-                user.password = hash
-                next()
-            })
-        })
-    } else {
-        next()
-    }
-});
+//             bcrypt.hash(user.password, salt, function (err, hash) {
+//                 if (err) return next(err);
+//                 user.password = hash
+//                 next()
+//             })
+//         })
+//     } else {
+//         next()
+//     }
+// });
 
 userSchema.methods.comparePassword = function (plainPassword, cb) {
+    console.log(plainPassword)
     bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
+
         cb(null, isMatch)
     })
 }
