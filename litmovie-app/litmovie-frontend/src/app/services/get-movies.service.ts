@@ -53,6 +53,11 @@ export class GetMoviesService {
     return this.http.get(path);
   }
 
+  getTrailerDetails(movieId: String) {
+    const path = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`;
+    return this.http.get(path);
+  }
+
 
 
 }

@@ -25,7 +25,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input'
 import { FavoritesComponent } from './pages/favorites/favorites.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +51,8 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    
   ],
   providers: [Appconstant, CookieService, Localcookie, DatePipe],
   bootstrap: [AppComponent]

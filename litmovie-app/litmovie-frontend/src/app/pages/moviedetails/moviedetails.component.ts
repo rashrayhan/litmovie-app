@@ -19,6 +19,8 @@ export class MoviedetailsComponent implements OnInit {
   title; overview; releaseDate; runtime; revenue; status; popularity;
   voteCount; voteAverage;
   comments: string; postComment = [];
+  trailer: string;
+
 
 
   toggleActors() {
@@ -42,7 +44,7 @@ export class MoviedetailsComponent implements OnInit {
 
 
     this.getMoviesServies.getMovieDetail(this.movieId).subscribe((data) => {
-      console.log('movie detail from init ', data);
+      //console.log('movie detail from init ', data);
       this.movie = data;
       console.log('this.movie', this.movie);
       this.IMG_URL = `${IMAGE_BASE_URL}w1280${this.movie.backdrop_path}`;
@@ -55,11 +57,20 @@ export class MoviedetailsComponent implements OnInit {
       this.popularity = this.movie.popularity;
       this.voteCount = this.movie.vote_count;
       this.voteAverage = this.movie.vote_average;
+
+
     });
 
     this.getMoviesServies.getCastDetail(this.movieId).subscribe((data2) => {
       this.casts = data2['cast'];
       // console.log('this.movie.cast', data2['cast']);
+    });
+
+    this.getMoviesServies.getTrailerDetails(this.movieId).subscribe((data3) => {
+      this.trailer = `https://www.youtube.com/embed/${data3['videos']['results'][0]['key']}?autoplay=1?controls=1`;
+      // this.trailer = data3['videos']['results'][0]['key'];
+      console.log('tarilers', this.trailer);
+
     });
   }
 
