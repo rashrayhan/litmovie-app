@@ -6,7 +6,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition
 } from '@angular/material/snack-bar';
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   autoHide = 2000;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  constructor(private formBuilder: FormBuilder, private service: SignupService, public snackBar: MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder, private service: SignupService, public snackBar: MatSnackBar, private router: Router) { }
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
       name: [''],
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
       res => {
         if (res.status === true) {
           this.open('Signup Successful');
+          this.router.navigate(['/login']);
         } else {
           this.open(res.message);
         }
