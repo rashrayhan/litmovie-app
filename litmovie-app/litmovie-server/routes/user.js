@@ -67,7 +67,14 @@ router.post("/login", async (req, res) => {
     if (!validpass) return res.json({ status: false, message: 'Invalid Password' });
     //Create and assign a token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).json({ status: true, token: token, userId: user._id });
+    user.token = token;
+    user.save(function (err, user) {
+        if (err) return res.status(400).send(err);
+        //  res.send(null, user);
+    })
+    res.cookie("w_authExp", user.tokenExp);
+    res.header('auth-token', token)
+    res.cookie('auth-token', token).json({ status: true, token: token, userId: user._id });
 });
 // User.findOne({ email: req.body.elegantFormEmailEx }, (err, user) => {
 //     if (!user)

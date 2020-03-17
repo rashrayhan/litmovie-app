@@ -38,6 +38,8 @@ export class LoginComponent {
         if (res.status === true) {
           this.open('Login Successful');
           this.localcookie.setLoginCookie(res);
+          window.localStorage.setItem('userId', res.userId)
+          console.log(window.localStorage.getItem('userId'))
           this.router.navigate(['/landing']);
         } else {
           this.open(res.message);
