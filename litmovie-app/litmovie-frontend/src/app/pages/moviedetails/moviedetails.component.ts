@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterContentChecked, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetMoviesService } from '../../services/get-movies.service';
+import { GetFavoritesServiceService } from '../../services/favorites/get-favorites-service.service';
 import { IMAGE_BASE_URL, } from '../../../config';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-moviedetails',
@@ -20,6 +22,8 @@ export class MoviedetailsComponent implements OnInit {
   voteCount; voteAverage;
   comments: string; postComment = [];
   trailer: string;
+  favNumber: number;
+  favorited: any
 
 
 
@@ -32,7 +36,7 @@ export class MoviedetailsComponent implements OnInit {
     this.comments = '';
   }
 
-  constructor(private getMoviesServies: GetMoviesService, private route: ActivatedRoute) {
+  constructor(private getMoviesServies: GetMoviesService, private route: ActivatedRoute, private GetFavoritesServiceService: GetFavoritesServiceService) {
     this.route.queryParams.subscribe(params => {
       this.movieId = params['movieID'];
       // console.log('movie id', this.movieId);
@@ -57,7 +61,35 @@ export class MoviedetailsComponent implements OnInit {
       this.popularity = this.movie.popularity;
       this.voteCount = this.movie.vote_count;
       this.voteAverage = this.movie.vote_average;
+      const variable = {
+        userFrom: window.localStorage.getItem('userId'),
+        movieId: this.movieId,
+        movieTitle: this.title,
+        moviePost: this.IMG_URL,
+        movieRunTime: this.runtime
+      }
 
+      this.GetFavoritesServiceService.getFavoriteNumber(variable).subscribe((res) => {
+
+        if (res.success) {
+          console.log(res.success)
+          this.favNumber = res.subscribeNumber
+        }
+        else { alert('failed to get fav number') }
+
+
+      })
+
+      this.GetFavoritesServiceService.getIsFavorited(variable).subscribe((res) => {
+        console.dir(res)
+        if (res.success) {
+          this.favorited = res.subcribed
+          console.log(this.favorited)
+        }
+        else { alert('failed to get info about favorited') }
+
+
+      })
 
     });
 
@@ -74,7 +106,7 @@ export class MoviedetailsComponent implements OnInit {
     });
   }
 
-  handleFavorite() {  }
+  handleFavorite() { }
 }
 
 

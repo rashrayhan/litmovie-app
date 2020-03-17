@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { API_URL, API_KEY } from "../../config"
 import { from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators'
@@ -13,6 +13,7 @@ export class GetMoviesService {
   currentPage: number;
   merged = [];
   movieDetail;
+  private url = 'http://localhost:4600/api/favorites/favoriteNumber';
   constructor(private http: HttpClient) { }
 
 
@@ -57,6 +58,8 @@ export class GetMoviesService {
     const path = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`;
     return this.http.get(path);
   }
+
+
 
 
 
