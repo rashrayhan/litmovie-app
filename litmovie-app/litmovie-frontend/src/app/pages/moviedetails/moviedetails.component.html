@@ -2,7 +2,8 @@
 
 <mat-grid-list cols="4" rowHeight="140px" class="mgl-landing">
 
-  <mat-grid-tile [routerLink] = "['/moviedetails']"[queryParams]="{movieID: movieID}" [colspan]="4" [rowspan]="4" class="mtg-posters">
+  <mat-grid-tile [routerLink]="['/moviedetails']" [queryParams]="{movieID: movieID}" [colspan]="4" [rowspan]="4"
+    class="mtg-posters">
     <img [src]="IMG_URL">
 
     <p>
@@ -17,7 +18,7 @@
 </mat-grid-list>
 <div class="text-right my-3 mx-5">
 
-  <button mat-fab aria-label="Add to favorite">
+  <button (click)="handleFavorite()" mat-fab aria-label="Add to favorite">
     <mat-icon>favorite_border</mat-icon> 0
   </button>
 
@@ -27,7 +28,7 @@
 <h1 class="text-center">Movie Details</h1>
 <hr />
 
-<table mdbTable striped="true" class="col-9 container" >
+<table mdbTable striped="true" class="col-9 container">
 
   <tbody>
     <tr mdbTableCol>
@@ -61,7 +62,7 @@
 
 <div class="text-center mb-4 mt-4">
 
-  <a mat-stroked-button color="primary" (click) ="toggleActors()">Toggle Movie Actors</a>
+  <a mat-stroked-button color="primary" (click)="toggleActors()">Toggle Movie Actors</a>
 </div>
 
 
@@ -84,11 +85,11 @@
 <div class="text-center mb-4 mt-4">
 
   <button mat-icon-button aria-label="like" class="mr-4">
-    <mat-icon color="accent" >thumb_up</mat-icon> 20
+    <mat-icon color="accent">thumb_up</mat-icon> 20
   </button>
 
   <button mat-icon-button aria-label="dislike">
-    <mat-icon color="warn" >thumb_down</mat-icon> 12
+    <mat-icon color="warn">thumb_down</mat-icon> 12
   </button>
 </div>
 
