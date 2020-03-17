@@ -18,16 +18,21 @@ export class MoviedetailsComponent implements OnInit {
   movieId; movie; casts: any;
   title; overview; releaseDate; runtime; revenue; status; popularity;
   voteCount; voteAverage;
+  comments: string; postComment = [];
 
 
   toggleActors() {
     this.actorsShow = !this.actorsShow;
   }
 
+  post() {
+    this.postComment.push(this.comments);
+  }
+
   constructor(private getMoviesServies: GetMoviesService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.movieId = params['movieID'];
-      console.log('movie id', this.movieId);
+      // console.log('movie id', this.movieId);
     });
   }
 
@@ -53,14 +58,11 @@ export class MoviedetailsComponent implements OnInit {
 
     this.getMoviesServies.getCastDetail(this.movieId).subscribe((data2) => {
       this.casts = data2['cast'];
-      console.log('this.movie.cast', data2['cast']);
+      // console.log('this.movie.cast', data2['cast']);
     });
   }
 
-  handleFavorite() {
-
-
-  }
+  handleFavorite() {  }
 }
 
 

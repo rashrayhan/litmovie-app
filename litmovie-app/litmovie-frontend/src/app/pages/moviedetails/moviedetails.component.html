@@ -93,5 +93,19 @@
   </button>
 </div>
 
-<h3 class="text-left text-muted px-3">Comment on {{title}}</h3>
-<hr />
+<h3 class="text-left text-muted px-3">Comment on {{title}}</h3><hr/>
+<!-- new comment -->
+<div class="px-5 col-6">
+  <div class="md-form">
+    <input mdbInput type="text" name="text" [(ngModel)]="comments" id="form1" class="form-control">
+    <label for="form1" class="">Add Comment</label>
+    <button (click)="post()" mdbBtn color="light" mdbWavesEffect>Send</button>
+  </div>
+
+  <!-- list of comments -->
+  <div class="my-2 ls-comments" *ngFor="let comm of postComment">
+    <img src="../../../assets/pbSz7d1aURy88HGzFWng5EoFU81.jpg"/>
+    <p class="px-2"> <span>John Doe</span> <br/>{{comm}}</p>
+
+  </div>
+</div>
