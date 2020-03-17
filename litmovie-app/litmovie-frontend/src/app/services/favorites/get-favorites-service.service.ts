@@ -30,5 +30,27 @@ export class GetFavoritesServiceService {
       });
 
   }
+  addtofavortie(variable: any) {
+    return this.http
+      .post(this.url + '/addToFavorite', variable, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type'
+        })
+      });
+
+  }
+  removefavortie(variable: any) {
+    return this.http
+      .post(this.url + '/removeFromFavorite', variable, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type'
+        })
+      });
+
+  }
 
 }
