@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
-
+const { registerValidation, loginValidation } = require("../routes/validation");
 const { auth } = require("../middleware/auth");
-
+const bcrypt = require("bcrypt");
 //=================================
 //             User
 //=================================
@@ -21,16 +21,30 @@ router.get("/auth", auth, (req, res) => {
     });
 });
 
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
+    const { error } = registerValidation(req.body);
+    if (error) return res.json({ status: false, message: error.details[0].message });
 
-    const user = new User(req.body);
-
-    user.save((err, doc) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true
-        });
+    //check if the user is already in database
+    const emailExist = await User.findOne({ email: req.body.email.toLowerCase() });
+    if (emailExist) return res.json({ status: false, message: "Email already exists" });
+    //Hash the passwords
+    const salt = await bcrypt.genSalt(10);
+    const hashpassword = await bcrypt.hash(req.body.password, salt);
+    const user = new User({
+        name: req.body.name,
+        email: req.body.email.toLowerCase(),
+        password: hashpassword,
+        lastname: req.body.lastname,
+        role: 1
     });
+
+    try {
+        const savedUser = await user.save();
+        res.json({ status: true, user: savedUser._id });
+    } catch (err) {
+        res.json({ status: false, message: 'Error Occured' });
+    }
 });
 
 router.post("/login", (req, res) => {
