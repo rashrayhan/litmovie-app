@@ -1,0 +1,25 @@
+<app-loggedinnavbar></app-loggedinnavbar>
+
+<div class="container col-6 mt-5">
+  <h1 class="text-center">Favorite Movies</h1>
+  <hr />
+
+  <table mdbTable striped="true">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol >
+        <th scope="row">1</th>
+        <td>Movie title</td>
+        <td>Movie release date</td>
+        <td>
+          <mat-icon routerLink='.' color="warn" style="cursor: pointer;">delete_outline</mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

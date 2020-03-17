@@ -27,6 +27,7 @@ export class MoviedetailsComponent implements OnInit {
 
   post() {
     this.postComment.push(this.comments);
+    this.comments = '';
   }
 
   constructor(private getMoviesServies: GetMoviesService, private route: ActivatedRoute) {

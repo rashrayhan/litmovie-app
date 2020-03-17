@@ -96,11 +96,13 @@
 <h3 class="text-left text-muted px-3">Comment on {{title}}</h3><hr/>
 <!-- new comment -->
 <div class="px-5 col-6">
+
   <div class="md-form">
-    <input mdbInput type="text" name="text" [(ngModel)]="comments" id="form1" class="form-control">
+    <textarea type="text" [(ngModel)]="comments" id="form1" class="md-textarea form-control" mdbInput></textarea>
     <label for="form1" class="">Add Comment</label>
     <button (click)="post()" mdbBtn color="light" mdbWavesEffect>Send</button>
   </div>
+
 
   <!-- list of comments -->
   <div class="my-2 ls-comments" *ngFor="let comm of postComment">

@@ -24,6 +24,7 @@ import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input'
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatInputModule } from '@angular/material/input'
     NavbarComponent,
     FooterComponent,
     MoviedetailsComponent,
-    LoggedinnavbarComponent
+    LoggedinnavbarComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
