@@ -18,10 +18,15 @@ export class MoviedetailsComponent implements OnInit {
   movieId; movie; casts: any;
   title; overview; releaseDate; runtime; revenue; status; popularity;
   voteCount; voteAverage;
+  comments: string; postComment = [];
 
 
   toggleActors() {
     this.actorsShow = !this.actorsShow;
+  }
+
+  post() {
+    this.postComment.push(this.comments);
   }
 
   constructor(private getMoviesServies: GetMoviesService, private route: ActivatedRoute) {
@@ -57,10 +62,7 @@ export class MoviedetailsComponent implements OnInit {
     });
   }
 
-  handleFavorite() {
-
-
-  }
+  handleFavorite() {  }
 }
 
 

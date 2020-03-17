@@ -31,3 +31,22 @@
   }
 
 }
+.ls-comments{
+  display: flex;
+  border-bottom: 1px solid #DDD;
+
+  img{
+    flex: 0.2;
+    max-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+  p{
+    flex: 0.8;
+
+    span{
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

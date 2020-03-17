@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
 import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.component';
 @NgModule({
@@ -40,7 +40,8 @@ import { LoggedinnavbarComponent } from './pages/loggedinnavbar/loggedinnavbar.c
     MatCardModule,
     MDBBootstrapModule.forRoot(),
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

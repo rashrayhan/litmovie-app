@@ -10,6 +10,7 @@ import { FormBuilder, Validators, EmailValidator, FormGroup } from '@angular/for
 export class LoginComponent {
   elegantForm: FormGroup;
 
+
   constructor(public fb: FormBuilder) {
     this.elegantForm = fb.group({
       elegantFormEmailEx: ['', [Validators.required, Validators.email]],
