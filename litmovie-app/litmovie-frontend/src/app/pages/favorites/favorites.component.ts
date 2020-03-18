@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
   headElements = ['#', 'Title', 'Release Date', 'Action'];
-
+  data: [];
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  handleRemove(){}
 
 }
