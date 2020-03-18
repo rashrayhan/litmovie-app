@@ -45,7 +45,6 @@ router.post("/getDislikes", (req, res) => {
 
 })
 
-
 router.post("/upLike", (req, res) => {
 
     let variable = {}
@@ -68,9 +67,6 @@ router.post("/upLike", (req, res) => {
     })
 
 })
-
-
-
 
 router.post("/unLike", (req, res) => {
 
@@ -133,17 +129,5 @@ router.post("/upDisLike", (req, res) => {
 
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
