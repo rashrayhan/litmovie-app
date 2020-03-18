@@ -10,15 +10,19 @@
         <th *ngFor="let head of headElements" scope="col">{{head}} </th>
       </tr>
     </thead>
-    <tbody>
-      <tr mdbTableCol >
-        <th scope="row">1</th>
-        <td>Movie title</td>
-        <td>Movie release date</td>
+    <tbody *ngFor="let d of data; let i=index">
+      <tr mdbTableCol>
+        <td>{{i+1}}</td>
+        <!-- // {{IMG_URL?<img src="{{IMG_URL}}" alt="movie poster">:"no image"}} -->
+        <td title="{{d['moviePost']}}">{{d['movieTitle']}}</td>
+
+        <td>{{d['movieRunTime']}}</td>
         <td>
-          <mat-icon routerLink='.' color="warn" style="cursor: pointer;">delete_outline</mat-icon>
+          <mat-icon (click)="handleRemove(d['movieId'])" color="warn" style="cursor: pointer;">delete_outline</mat-icon>
         </td>
       </tr>
+
+
     </tbody>
   </table>
 
