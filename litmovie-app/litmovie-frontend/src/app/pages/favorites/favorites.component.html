@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol >
+      <tr mdbTableCol>
         <th scope="row">1</th>
         <td>Movie title</td>
         <td>Movie release date</td>
@@ -19,6 +19,17 @@
           <mat-icon routerLink='.' color="warn" style="cursor: pointer;">delete_outline</mat-icon>
         </td>
       </tr>
+      <tr mdbTableCol *ngFor="let d of data; let num=index">
+        <td> num</td>
+        <td>Movie title</td>
+        <td>Movie release date</td>
+        <td>
+          <button (click)="handleRemove()">
+            <mat-icon routerLink='.' color="warn" style="cursor: pointer;">delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+
     </tbody>
   </table>
 
