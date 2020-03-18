@@ -1,4 +1,6 @@
-<app-navbar></app-navbar>
+
+<app-navbar *ngIf="!uuid"></app-navbar>
+<app-loggedinnavbar *ngIf="uuid"></app-loggedinnavbar>
 
 <mat-grid-list cols="4" rowHeight="140px" class="mgl-landing">
 

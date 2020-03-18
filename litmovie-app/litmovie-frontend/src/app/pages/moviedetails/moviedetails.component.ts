@@ -143,6 +143,3 @@ export class MoviedetailsComponent implements OnInit {
     }
   }
 }
-
-
-
