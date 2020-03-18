@@ -9,6 +9,10 @@ var cors = require('cors')
 //const config = require("./config/key");
 const port = process.env.port || 4600;
 const app = express();
+
+var distDir = __dirname + "../litmovie-frontend/dist";
+app.use(express.static(distDir));
+
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'dist/evoting-app')));
 app.use(helmet());
