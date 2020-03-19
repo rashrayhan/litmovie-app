@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private url = 'http://localhost:4600/api/users/login';
+  private url = 'http://localhost:4600/api/users';
 
 
   constructor(private httpclient: HttpClient) { }
@@ -16,13 +16,21 @@ export class LoginService {
     // const model = { email: body.email, password: body.password };
     // console.log(model);
     return this.httpclient
-      .post(this.url, body, {
+      .post(this.url + '/login', body, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           Accept: 'application/json',
           'Access-Control-Allow-Headers': 'Content-Type'
         })
       });
+
+  }
+
+  logoutUser(userId) {
+    console.log('logout handler service')
+    return this.httpclient
+      .get(this.url + `/logout`)
+
 
   }
 }
