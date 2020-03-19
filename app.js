@@ -10,20 +10,20 @@ var cors = require('cors')
 const port = process.env.port || 4600;
 const app = express();
 
-var distDir = __dirname + "../litmovie-frontend/dist";
+var distDir = __dirname + "/dist";
 app.use(express.static(distDir));
 
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'dist/evoting-app')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use('/api/users', require('./routes/user'));
+app.use('/api/users', require('./litmovie-server/routes/user'));
 //app.use('/api/comment', require('./routes/comment'));
 //app.use('/api/like', require('./routes/like'));
-app.use('/api/favorites', require('./routes/favorite'));
+app.use('/api/favorites', require('./litmovie-server/routes/favorite'));
 //app.use('/uploads', express.static('uploads'));
 
 app.get("*", (req, res) => {

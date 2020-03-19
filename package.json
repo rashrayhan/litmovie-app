@@ -1,32 +1,18 @@
 {
-  "name": "litmovie-app",
-  "version": "1.0.0",
-  "engines": {
-    "node": "13.9.x"
-  },
-  "description": "",
-  "main": "litmovie-server/app.js",
+  "name": "litmovie-frontend",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node litmovie-server/app.js  --proxy-config proxy.config.json",
-    "postinstall": "ng build litmovie-frontend --output-path litmovie-frontend/dist"
+    "start": "node app.js  --proxy-config proxy.config.json",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "postinstall": "ng build --output-path dist"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "g": "^2.0.1",
-    "helmet": "^3.21.3",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.4",
-    "nodemon": "^2.0.2",
-	  "@angular/animations": "~9.0.6",
+    "@angular/animations": "~9.0.6",
     "@angular/cdk": "^9.1.2",
     "@angular/common": "~9.0.6",
     "@angular/compiler": "~9.0.6",
@@ -51,7 +37,7 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
-   "devDependencies": {
+  "devDependencies": {
     "@angular-devkit/build-angular": "^0.900.6",
     "@angular/language-service": "~9.0.6",
     "@types/jasmine": "~3.5.0",
