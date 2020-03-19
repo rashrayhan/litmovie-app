@@ -1,5 +1,5 @@
 # litmovie-app
-A Movie App themed _**lit-movie**_ provides a simple and intuitive single page web application of movies Database.
+A Movie App themed _**lit-movie**_ provides a simple and intuitive single page web application of movies Database. Crafted with the state of the art **Single Page Application** using _**MEAN stack**_ in partial fulfillment of the requirements for MWA course (March, 2020) at Maharishi International University, USA
 
 # Features
 The app has the following features:
