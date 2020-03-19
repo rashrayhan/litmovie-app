@@ -57,9 +57,7 @@ export class FavoritesComponent implements OnInit {
 
   }
 
-
-
-  ngOnInit(): void {
+ngOnInit(): void {
     this.uuid = window.localStorage.getItem('userId')
     console.log(this.uuid)
     // this.fecthMovies(this.uuid)
