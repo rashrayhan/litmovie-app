@@ -18,24 +18,7 @@ export class FavoritesComponent implements OnInit {
 
   }
 
-  // ngAfterContentChecked(): void {
-  //   this.uuid = window.localStorage.getItem('userId')
 
-  //   this.GetFavoritesServiceService.getfavortieMovies(this.uuid).subscribe((res) => {
-  //     if (res['success']) {
-
-  //       this.data = res['favorites']
-  //       this.IMG_URL = this.data['moviePost']
-  //     }
-  //     else {
-
-  //       alert('Failed to get favorited video')
-  //     }
-
-  //   })
-
-
-  // }
   handleRemove(movieId) {
     //  when already a
     console.log(movieId)
