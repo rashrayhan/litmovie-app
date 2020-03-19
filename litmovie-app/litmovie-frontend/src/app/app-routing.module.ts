@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MoviedetailsComponent } from './pages/moviedetails/moviedetails.component';
 import { HomeGuard } from './guards/home/home.guard';
-import { LoginGuard } from './guards/login/login.guard';
+
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 const routes: Routes = [

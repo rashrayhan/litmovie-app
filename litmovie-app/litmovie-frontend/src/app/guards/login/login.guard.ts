@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Appconstant } from 'src/app/utils/appconstant';
 import { Localcookie } from 'src/app/utils/localcookie';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class LoginGuard implements CanActivate {
     private cookieservice: CookieService,
     private appconstant: Appconstant,
     private localCookie: Localcookie,
-    public router: Router
-  ) {}
+    public router: Router, private logoutService: LoginService
+  ) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -30,8 +31,8 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
 
-    if(this.cookieservice.check(this.appconstant.logincookie) === false
-     || JSON.parse(this.cookieservice.get(this.appconstant.logincookie)).status === false){
+    if (this.cookieservice.check(this.appconstant.logincookie) === false
+      || JSON.parse(this.cookieservice.get(this.appconstant.logincookie)).status === false) {
       this.router.navigate(['login']);
       return false;
     }

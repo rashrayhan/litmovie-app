@@ -51,9 +51,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    // const { error } = loginValidation(req.body);
-    // if (error) return res.json({ status: false, message: error.details[0].message });
-    // //Check if the email exists
+
     const user = await User.findOne({ email: req.body.elegantFormEmailEx.toLowerCase() });
     if (!user) return res.json({ status: false, message: "Email not found" });
     //Password is correct
@@ -74,37 +72,21 @@ router.post("/login", async (req, res) => {
     })
     res.cookie("w_authExp", user.tokenExp);
     res.header('auth-token', token)
-    res.cookie('auth-token', token).json({ status: true, token: token, userId: user._id });
+    res.cookie("auth", token, { maxAge: 1000 * 60 * 10, httpOnly: false })
+    console.log(res.cookie.get)
+    res.json({ status: true, token: token, userId: user._id });
 });
-// User.findOne({ email: req.body.elegantFormEmailEx }, (err, user) => {
-//     if (!user)
-//         return res.json({
-//             loginSuccess: false,
-//             message: "Auth failed, email not found"
-//         });
-
-//     user.comparePassword(req.body.elegantFormPasswordEx, (err, isMatch) => {
-//         if (!isMatch)
-//             return res.json({ loginSuccess: false, message: "Wrong password" });
-
-//         user.generateToken((err, user) => {
-//             if (err) return res.status(400).send(err);
-//             res.cookie("w_authExp", user.tokenExp);
-//             res
-//                 .cookie("w_auth", user.token)
-//                 .status(200)
-//                 .json({
-//                     loginSuccess: true, userId: user._id
-//                 });
-//         });
-//     });
-// });
 
 
-router.get("/logout", auth, (req, res) => {
-    User.findOneAndUpdate({ _id: req.user._id }, { token: "", tokenExp: "" }, (err, doc) => {
+router.get("/logout/:userId", (req, res) => {
+    console.log('logout handler method from server error' + req.params.userId)
+
+    User.findOneAndUpdate({ _id: req.params.userId }, { token: "", tokenExp: "" }, (err, doc) => {
+
         if (err) return res.json({ success: false, err });
-        return res.status(200).send({
+        console.log('logout handler method from server')
+
+        return res.status(200).json({
             success: true
         });
     });

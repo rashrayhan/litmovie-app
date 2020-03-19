@@ -9,12 +9,13 @@ var cors = require('cors')
 //const config = require("./config/key");
 const port = process.env.port || 4600;
 const app = express();
+app.use(cookieParser());
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'dist/evoting-app')));
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+
 
 app.use('/api/users', require('./routes/user'));
 //app.use('/api/comment', require('./routes/comment'));

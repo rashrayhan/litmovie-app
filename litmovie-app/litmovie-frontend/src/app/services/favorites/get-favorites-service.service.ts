@@ -53,4 +53,16 @@ export class GetFavoritesServiceService {
 
   }
 
+  getfavortieMovies(variable: any) {
+    return this.http
+      .post(this.url + '/getFavoredMovie', variable, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type'
+        })
+      });
+
+  }
+
 }

@@ -37,9 +37,11 @@ export class LoginComponent {
       res => {
         if (res.status === true) {
           this.open('Login Successful');
-          this.localcookie.setLoginCookie(res);
+
+          window.localStorage.setItem('token', res['token']);
+
           window.localStorage.setItem('userId', res.userId)
-          console.log(window.localStorage.getItem('userId'))
+          console.log(window.localStorage.getItem('userId'), res['token'])
           this.router.navigate(['/landing']);
         } else {
           this.open(res.message);
