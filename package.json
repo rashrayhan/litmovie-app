@@ -9,9 +9,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node litmovie-server/app.js  --proxy-config proxy.config.json",
-    "postinstall": "ng build --output-path litmovie-frontend/dist"
+    "postinstall": "ng build litmovie-frontend --output-path litmovie-frontend/dist"
   },
-  "private": true,
   "keywords": [],
   "author": "",
   "license": "ISC",
